@@ -6,8 +6,6 @@ import { Text, View } from '../components/Themed';
 export const TabOne = (count: number, onClick: () => void) => (
   <ScrollView style={styles.scrollView}>
     <View style={styles.container} >
-
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <Text style={styles.subtitle1}>Welcome to my game!</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <Text style={styles.title}>Click the button!</Text>
@@ -28,7 +26,7 @@ export const TabOne = (count: number, onClick: () => void) => (
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: -45,
+    marginVertical: 70,
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',

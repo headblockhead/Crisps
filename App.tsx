@@ -12,10 +12,39 @@ import useColorScheme from './hooks/useColorScheme';
 
 const Tab = createBottomTabNavigator();
 
+let timerStarted = false;
+
+const timerFunction = (count: number, setCount: (x: number) => void) => {
+  //TODO: FIx counter!!!!
+//  setCount(count + 10);
+  setTimeout(() => timerFunction(count, setCount), 1000);
+}
+
 const StateContainer = () => {
   const [count, setCount] = useState(0);
-  const tabOne = () => TabOne(count, () => setCount(count + 1));
-  const tabTwo = () => TabTwo(count);
+  const [addAmount, setAddAmount] = useState(1);
+  const [botAmount, setBotAmount] = useState(0);
+  const tabOne = () => TabOne(count, () => {
+    setCount(count + addAmount);
+    if(!timerStarted) {
+      timerStarted = true;
+      setTimeout(() => timerFunction(count, setCount), 1000);
+    }
+  } );
+  const tabTwo = () => TabTwo(count, () => {
+    if (count >= 100) {
+      setCount(count - 100)
+      setAddAmount(addAmount + 1)
+    }
+  }, () => {
+    if (count >= 1) {
+      setCount(count - 1)
+      setBotAmount(botAmount + 1)
+    }
+  },
+  addAmount,
+  botAmount,
+  );
   return (
     <>
       <Tab.Navigator>
