@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TouchableNativeFeedbackBase } from 'react-native';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -12,39 +12,37 @@ import useColorScheme from './hooks/useColorScheme';
 
 const Tab = createBottomTabNavigator();
 
-let timerStarted = false;
-
-const timerFunction = (count: number, setCount: (x: number) => void) => {
-  //TODO: FIx counter!!!!
-//  setCount(count + 10);
-  setTimeout(() => timerFunction(count, setCount), 1000);
-}
+let timerActive = true;
 
 const StateContainer = () => {
+  const [tick, setTick] = useState(0);
   const [count, setCount] = useState(0);
   const [addAmount, setAddAmount] = useState(1);
-  const [botAmount, setBotAmount] = useState(0);
+  const [botAmount, setBotAmount] = useState(1);
+  useEffect(() => {
+    setInterval(() => {
+      setTick(tick => tick + 1);
+    }, 1000);
+  }, []);
+  useEffect(() => {
+    setCount(count => count + botAmount);
+  }, [tick]);
   const tabOne = () => TabOne(count, () => {
     setCount(count + addAmount);
-    if(!timerStarted) {
-      timerStarted = true;
-      setTimeout(() => timerFunction(count, setCount), 1000);
-    }
-  } );
-  const tabTwo = () => TabTwo(count, () => {
+  });
+  const addOne = () => {
     if (count >= 100) {
       setCount(count - 100)
       setAddAmount(addAmount + 1)
     }
-  }, () => {
+  };
+  const addOneBot = () => {
     if (count >= 1) {
       setCount(count - 1)
       setBotAmount(botAmount + 1)
     }
-  },
-  addAmount,
-  botAmount,
-  );
+  };
+  const tabTwo = () => TabTwo(count, addOne, addOneBot, addAmount, botAmount);
   return (
     <>
       <Tab.Navigator>

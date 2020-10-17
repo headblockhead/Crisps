@@ -4,18 +4,18 @@ import { Button, StyleSheet } from 'react-native';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 
-export const TabTwo = (count: number, addOne: () => void, addBotOne: () => void, clickpoi:number, bota:number) => (
+export const TabTwo = (count: number, addOne: () => void, addOneBot: () => void, pointsPerClick:number, botCount:number) => (
   <View style={styles.container}>
     <Text style={styles.title}>Shop</Text>
     <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
     <Text style={styles.title2}>Info:</Text>
     <Text style={styles.medium}>Balance: {count}</Text>
-    <Text style={styles.medium}>Points/click: {clickpoi}</Text>
-    <Text style={styles.medium}>Bots: {bota}</Text>
+    <Text style={styles.medium}>Points/click: {pointsPerClick}</Text>
+    <Text style={styles.medium}>Bots: {botCount}</Text>
     <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
     <Text style={styles.title3}>Buy:</Text>
     <Button title="Add one (100 point cost)" onPress={addOne} />
-    <Button title="Add one Bot (1000 point cost)" onPress={addBotOne} />
+    <Button title="Add one Bot (1000 point cost)" onPress={addOneBot} />
   </View>
 );
 
