@@ -3,7 +3,7 @@ import { Component } from 'react';
 import { Alert, Button, ScrollView, StyleSheet } from 'react-native';
 import { Text, View } from '../components/Themed';
 
-export const TabOne = (count: number, onClick: () => void) => (
+export const Press = (count: number, onClick: () => void, addAmount : number) => (
   <ScrollView style={styles.scrollView}>
     <View style={styles.container} >
       <Text style={styles.subtitle1}>Welcome to my game!</Text>
@@ -18,7 +18,7 @@ export const TabOne = (count: number, onClick: () => void) => (
       <Text style={styles.big}>{count}</Text>
 
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <Button title="llllllllllllllllllllllllllllll" onPress={onClick} />
+      <Button title={addAmount == 1? "Add Cookie": "Add Cookies"} onPress={onClick} />
 
     </View>
   </ScrollView>
@@ -26,13 +26,13 @@ export const TabOne = (count: number, onClick: () => void) => (
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 70,
+    
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
   scrollView: {
-
+    marginVertical: 40,
 
   },
   title: {

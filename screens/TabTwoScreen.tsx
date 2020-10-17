@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { Button, StyleSheet } from 'react-native';
+import { Button, ScrollView, StyleSheet } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 
-export const TabTwo = (count: number, addOne: () => void, addOneBot: () => void, pointsPerClick:number, botCount:number) => (
+export const Shop = (count: number, addOne: () => void, addOneBot: () => void, pointsPerClick:number, botCount:number) => (
+  <ScrollView style={styles.scrollView}>
   <View style={styles.container}>
     <Text style={styles.title}>Shop</Text>
     <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
@@ -17,6 +18,7 @@ export const TabTwo = (count: number, addOne: () => void, addOneBot: () => void,
     <Button title="Add one (100 point cost)" onPress={addOne} />
     <Button title="Add one Bot (1000 point cost)" onPress={addOneBot} />
   </View>
+  </ScrollView>
 );
 
 const styles = StyleSheet.create({
@@ -24,6 +26,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  scrollView: {
+    marginVertical: 70,
+
   },
   title: {
     fontSize: 30,

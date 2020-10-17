@@ -4,32 +4,35 @@ import { TouchableNativeFeedbackBase } from 'react-native';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { TabOne } from './screens/TabOneScreen';
-import { TabTwo } from './screens/TabTwoScreen';
+import { Press } from './screens/TabOneScreen';
+import { Shop } from './screens/TabTwoScreen';
 
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 
 const Tab = createBottomTabNavigator();
 
-let timerActive = true;
+let timerActive = false;
 
 const StateContainer = () => {
-  const [tick, setTick] = useState(0);
+  const [seconds, setSeconds] = useState(0);
   const [count, setCount] = useState(0);
   const [addAmount, setAddAmount] = useState(1);
-  const [botAmount, setBotAmount] = useState(1);
+  const [botAmount, setBotAmount] = useState(0);
   useEffect(() => {
     setInterval(() => {
-      setTick(tick => tick + 1);
+      setSeconds(tick => tick + 1);
     }, 1000);
   }, []);
   useEffect(() => {
-    setCount(count => count + botAmount);
-  }, [tick]);
-  const tabOne = () => TabOne(count, () => {
+    if (timerActive == true) {
+      setCount(count => count + botAmount);
+    }
+  }, [seconds]);
+  const tabOne = () => Press(count, () => {
+
     setCount(count + addAmount);
-  });
+  }, addAmount);
   const addOne = () => {
     if (count >= 100) {
       setCount(count - 100)
@@ -39,10 +42,15 @@ const StateContainer = () => {
   const addOneBot = () => {
     if (count >= 1) {
       setCount(count - 1)
-      setBotAmount(botAmount + 1)
+      if (timerActive) {
+        setBotAmount(botAmount + 1)
+      }else {
+        timerActive = true
+        setBotAmount(botAmount + 1)
+      }
     }
   };
-  const tabTwo = () => TabTwo(count, addOne, addOneBot, addAmount, botAmount);
+  const tabTwo = () => Shop(count, addOne, addOneBot, addAmount, botAmount);
   return (
     <>
       <Tab.Navigator>
