@@ -1,10 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
-import { TouchableNativeFeedbackBase } from 'react-native';
+import { ImageBackground, StyleSheet } from 'react-native';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Press } from './screens/TabOneScreen';
+import { PressScr } from './screens/TabOneScreen';
 import { Shop } from './screens/TabTwoScreen';
 
 import useCachedResources from './hooks/useCachedResources';
@@ -14,7 +14,11 @@ const Tab = createBottomTabNavigator();
 
 let timerActive = false;
 
-const StateContainer = () => {
+interface StateContainerProps {
+  colorScheme: string,
+}
+
+const StateContainer = (props: StateContainerProps) => {
   const [seconds, setSeconds] = useState(0);
   const [count, setCount] = useState(0);
   const [addAmount, setAddAmount] = useState(1);
@@ -29,10 +33,11 @@ const StateContainer = () => {
       setCount(count => count + botAmount);
     }
   }, [seconds]);
-  const tabOne = () => Press(count, () => {
 
+  const tabOne = () => PressScr(count, () => {
     setCount(count + addAmount);
-  }, addAmount);
+  }, addAmount, props.colorScheme);
+
   const addOne = () => {
     if (count >= 100) {
       setCount(count - 100)
@@ -40,11 +45,11 @@ const StateContainer = () => {
     }
   };
   const addOneBot = () => {
-    if (count >= 1) {
-      setCount(count - 1)
+    if (count >= 1000) {
+      setCount(count - 1000)
       if (timerActive) {
         setBotAmount(botAmount + 1)
-      }else {
+      } else {
         timerActive = true
         setBotAmount(botAmount + 1)
       }
@@ -53,28 +58,39 @@ const StateContainer = () => {
   const tabTwo = () => Shop(count, addOne, addOneBot, addAmount, botAmount);
   return (
     <>
-      <Tab.Navigator>
-        <Tab.Screen name="Tab One" component={tabOne} />
-        <Tab.Screen name="Tab Two" component={tabTwo} />
-      </Tab.Navigator>
+        <Tab.Navigator>
+          <Tab.Screen name="Tab One" component={tabOne} />
+          <Tab.Screen name="Tab Two" component={tabTwo} />
+        </Tab.Navigator>
     </>
   )
-};
+}; 
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
+  const theme = colorScheme === "dark" ? DarkTheme : DefaultTheme;
+  theme.colors.background = "transparent";
 
   if (!isLoadingComplete) {
     return null;
   } else {
     return (
-      <NavigationContainer theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      <ImageBackground source={colorScheme === "dark" ? require('./assets/images/bg.png') : require('./assets/images/bg2.png')} style={styles.bg}>
+      <NavigationContainer theme={theme}>
         <SafeAreaProvider>
-          <StateContainer />
+          <StateContainer colorScheme={colorScheme} />
           <StatusBar />
         </SafeAreaProvider>
       </NavigationContainer>
+      </ImageBackground>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  bg: {
+    width: '100%',
+    height: '100%',
+  }
+})

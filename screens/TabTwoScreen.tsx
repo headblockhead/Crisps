@@ -1,7 +1,5 @@
 import * as React from 'react';
 import { Button, ScrollView, StyleSheet } from 'react-native';
-
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 
 export const Shop = (count: number, addOne: () => void, addOneBot: () => void, pointsPerClick:number, botCount:number) => (
@@ -26,10 +24,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+
   },
   scrollView: {
     marginVertical: 70,
-
+    backgroundColor: 'rgba(0,0,0,1)'
   },
   title: {
     fontSize: 30,
