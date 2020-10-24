@@ -23,10 +23,11 @@ const StateContainer = (props: StateContainerProps) => {
   const [count, setCount] = useState(0);
   const [addAmount, setAddAmount] = useState(1);
   const [botAmount, setBotAmount] = useState(0);
+  const [botLevel, setBotLevel] = useState(0);
   useEffect(() => {
     setInterval(() => {
       setSeconds(tick => tick + 1);
-    }, 1000);
+    }, 10000);
   }, []);
   useEffect(() => {
     if (timerActive == true) {
@@ -54,18 +55,25 @@ const StateContainer = (props: StateContainerProps) => {
         setBotAmount(botAmount + 1)
       }
     }
+  }
+  const addOneBotLevel = () => {
+    if (count >= 10000) {
+      setCount(count - 10000)
+      if (timerActive) {
+        setBotLevel(botLevel + 1)
+      }
+    }
   };
-  const tabTwo = () => Shop(count, addOne, addOneBot, addAmount, botAmount);
+  const tabTwo = () => Shop(count, addOne, addOneBot, addAmount, botAmount, addOneBotLevel, botLevel);
   return (
     <>
-        <Tab.Navigator>
-          <Tab.Screen name="Tab One" component={tabOne} />
-          <Tab.Screen name="Tab Two" component={tabTwo} />
-        </Tab.Navigator>
+      <Tab.Navigator>
+        <Tab.Screen name="Gathering Zone" component={tabOne} />
+        <Tab.Screen name="Trading Zone" component={tabTwo} />
+      </Tab.Navigator>
     </>
   )
-}; 
-
+};
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
@@ -77,12 +85,12 @@ export default function App() {
   } else {
     return (
       <ImageBackground source={colorScheme === "dark" ? require('./assets/images/bg.png') : require('./assets/images/bg2.png')} style={styles.bg}>
-      <NavigationContainer theme={theme}>
-        <SafeAreaProvider>
-          <StateContainer colorScheme={colorScheme} />
-          <StatusBar />
-        </SafeAreaProvider>
-      </NavigationContainer>
+        <NavigationContainer theme={theme}>
+          <SafeAreaProvider>
+            <StateContainer colorScheme={colorScheme} />
+            <StatusBar />
+          </SafeAreaProvider>
+        </NavigationContainer>
       </ImageBackground>
     );
   }

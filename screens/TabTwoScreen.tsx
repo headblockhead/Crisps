@@ -2,19 +2,26 @@ import * as React from 'react';
 import { Button, ScrollView, StyleSheet } from 'react-native';
 import { Text, View } from '../components/Themed';
 
-export const Shop = (count: number, addOne: () => void, addOneBot: () => void, pointsPerClick:number, botCount:number) => (
+export const Shop = (count: number, addOne: () => void, addOneBot: () => void, pointsPerClick:number, botCount:number, addOneBotLevel: () => void, botLevel: number) => (
   <ScrollView style={styles.scrollView}>
   <View style={styles.container}>
     <Text style={styles.title}>Shop</Text>
-    <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+    <View style={styles.separatorsmall} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+    <Text style={styles.subtitle1}>This is where you can buy equipment</Text>
+    <Text style={styles.subtitle1}>Or make upgrades to existing </Text>
+    <Text  style={styles.subtitle1}>equipment</Text>
+    <View style={styles.separatorsmall} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
     <Text style={styles.title2}>Info:</Text>
-    <Text style={styles.medium}>Balance: {count}</Text>
+    <Text style={styles.medium}>Cookies: {count}</Text>
     <Text style={styles.medium}>Points/click: {pointsPerClick}</Text>
     <Text style={styles.medium}>Bots: {botCount}</Text>
-    <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+    <Text style={styles.medium}>Bot level: {botLevel}</Text>
+    <View style={styles.separatorsmall} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
     <Text style={styles.title3}>Buy:</Text>
-    <Button title="Add one (100 point cost)" onPress={addOne} />
+    <Button title="Add one Point/Click (100 point cost)" onPress={addOne} />
     <Button title="Add one Bot (1000 point cost)" onPress={addOneBot} />
+    <Button title="Upgrade all bots (past and future) by 1 level (10000 point cost)" onPress={addOneBotLevel} />
+
   </View>
   </ScrollView>
 );
@@ -27,7 +34,7 @@ const styles = StyleSheet.create({
 
   },
   scrollView: {
-    marginVertical: 70,
+    marginVertical: '10%',
     backgroundColor: 'rgba(0,0,0,1)'
   },
   title: {
@@ -38,6 +45,10 @@ const styles = StyleSheet.create({
     marginVertical: 30,
     height: 1,
     width: '80%',
+  },
+  subtitle1: {
+    fontSize: 17,
+    fontWeight: 'bold',
   },
   big: {
     fontSize: 25,
@@ -53,5 +64,10 @@ const styles = StyleSheet.create({
   title3: {
     fontSize: 20,
     fontWeight: 'bold',
+  },
+  separatorsmall: {
+    marginVertical: 16.5,
+    height: 1,
+    width: '80%',
   },
 });
