@@ -12,8 +12,6 @@ import useColorScheme from './hooks/useColorScheme';
 
 const Tab = createBottomTabNavigator();
 
-let timerActive = false;
-
 interface StateContainerProps {
   colorScheme: string,
 }
@@ -25,13 +23,18 @@ const StateContainer = (props: StateContainerProps) => {
   const [botAmount, setBotAmount] = useState(0);
   const [botLevel, setBotLevel] = useState(0);
   useEffect(() => {
-    setInterval(() => {
-      setSeconds(tick => tick + 1);
-    }, 1000);
-  }, []);
+    const interval = setInterval(() => {
+        setSeconds(seconds => seconds + 1);
+      }, 1000);
+    return () => clearInterval(interval);
+  });
   useEffect(() => {
-    if (timerActive == true) {
-      //TODO: add bot level functionality
+    var toText = seconds.toString(); //convert to string
+    var lastChar = toText.slice(-1); //gets last character
+    var lastDigit = +(lastChar); //convert last character to number
+   // console.log(lastDigit);
+    const isBotActive = botLevel >= lastDigit;
+    if(isBotActive) {
       setCount(count => count + botAmount);
     }
   }, [seconds]);
@@ -44,33 +47,27 @@ const StateContainer = (props: StateContainerProps) => {
     if (count >= 100) {
       setCount(count - 100)
       setAddAmount(addAmount + 1)
-    }else {
+    } else {
       Alert.alert("Too Expensive!")
     }
   };
   const addOneBot = () => {
-    if (count >= 1000) {
+    if (count >= 1) {
       setCount(count - 1)
-      if (timerActive) {
-        setBotAmount(botAmount + 1)
-      } else {
-        timerActive = true
-        setBotAmount(botAmount + 1)
-      }
-    }else {
+      setBotAmount(botAmount + 1)
+    } else {
       Alert.alert("Too Expensive!")
     }
   }
   const addOneBotLevel = () => {
-    if (count >= 10000) {
+    if (count >= 1) {
       if (botLevel < 9) {
         setCount(count - 1)
         setBotLevel(botLevel + 1)
-
-      }else {
+      } else {
         Alert.alert("Bots are already at the highest level!")
       }
-    }else {
+    } else {
       Alert.alert("Too Expensive!")
     }
   };

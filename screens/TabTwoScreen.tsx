@@ -2,6 +2,19 @@ import * as React from 'react';
 import { Button, ScrollView, StyleSheet } from 'react-native';
 import { Text, View } from '../components/Themed';
 
+const getButtonColors = (scheme: string): Array<string> => {
+  if (scheme === "dark") {
+    return ["red", "green"];
+  }
+  return ["rgb(200,0,0)", "rgb(0,100,0)"];
+}
+
+const getButtonColor = (colorScheme: string, price: number, count: number) => {
+  const canAfford = price < count;
+  const colors = getButtonColors(colorScheme);
+  return canAfford ? colors[1] : colors[0];
+}
+
 export const Shop = (count: number, addOne: () => void, addOneBot: () => void, pointsPerClick: number, botCount: number, addOneBotLevel: () => void, botLevel: number, colorScheme: string) => (
   <ScrollView style={styles.scrollView}>
     <View style={styles.container}>
@@ -18,9 +31,9 @@ export const Shop = (count: number, addOne: () => void, addOneBot: () => void, p
       <Text style={styles.medium}>Bot level: {botLevel}</Text>
       <View style={styles.separatorsmall} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <Text style={styles.title3}>Buy:</Text>
-      <Button color={colorScheme === "dark" ? count < 100 ? "red" : "green" : count < 1 ? "rgb(200,0,0)" : "rgb(0,100,0)"} title="Add one Point/Click (100 point cost)" onPress={addOne} />
-      <Button color={colorScheme === "dark" ? count < 1000 ? "red" : "green" : count < 1 ? "rgb(200,0,0)" : "rgb(0,100,0)"} title="Add one Bot (1000 point cost)" onPress={addOneBot} />
-      <Button color={colorScheme === "dark" ? count < 10000 ? "red" : "green" : count < 1 ? "rgb(200,0,0)" : "rgb(0,100,0)"} title="Upgrade all bots (past and future) by 1 level (10000 point cost)" onPress={addOneBotLevel} />
+      <Button color={getButtonColor(colorScheme, 100, count)} title="Add one Point/Click (100 point cost)" onPress={addOne} />
+      <Button color={getButtonColor(colorScheme, 1000, count)} title="Add one Bot (1000 point cost)" onPress={addOneBot} />
+      <Button color={getButtonColor(colorScheme, 10000, count)} title="Upgrade all bots (past and future) by 1 level (10000 point cost)" onPress={addOneBotLevel} />
 
     </View>
   </ScrollView>
