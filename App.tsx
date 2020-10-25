@@ -21,7 +21,7 @@ const StateContainer = (props: StateContainerProps) => {
   const [count, setCount] = useState(0);
   const [addAmount, setAddAmount] = useState(1);
   const [botAmount, setBotAmount] = useState(0);
-  const [botLevel, setBotLevel] = useState(0);
+  const [botLevel, setBotLevel] = useState(1);
   useEffect(() => {
     const interval = setInterval(() => {
         setSeconds(seconds => seconds + 1);
@@ -33,7 +33,7 @@ const StateContainer = (props: StateContainerProps) => {
     var lastChar = toText.slice(-1); //gets last character
     var lastDigit = +(lastChar); //convert last character to number
    // console.log(lastDigit);
-    const isBotActive = botLevel >= lastDigit;
+    const isBotActive = botLevel >= (lastDigit + 1);
     if(isBotActive) {
       setCount(count => count + botAmount);
     }
@@ -61,7 +61,7 @@ const StateContainer = (props: StateContainerProps) => {
   }
   const addOneBotLevel = () => {
     if (count >= 1) {
-      if (botLevel < 9) {
+      if (botLevel < 10) {
         setCount(count - 1)
         setBotLevel(botLevel + 1)
       } else {
