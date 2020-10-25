@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
-import { ImageBackground, StyleSheet } from 'react-native';
+import { Alert, ImageBackground, StyleSheet } from 'react-native';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -27,10 +27,11 @@ const StateContainer = (props: StateContainerProps) => {
   useEffect(() => {
     setInterval(() => {
       setSeconds(tick => tick + 1);
-    }, 10000);
+    }, 1000);
   }, []);
   useEffect(() => {
     if (timerActive == true) {
+      //TODO: add bot level functionality
       setCount(count => count + botAmount);
     }
   }, [seconds]);
@@ -43,28 +44,37 @@ const StateContainer = (props: StateContainerProps) => {
     if (count >= 100) {
       setCount(count - 100)
       setAddAmount(addAmount + 1)
+    }else {
+      Alert.alert("Too Expensive!")
     }
   };
   const addOneBot = () => {
     if (count >= 1000) {
-      setCount(count - 1000)
+      setCount(count - 1)
       if (timerActive) {
         setBotAmount(botAmount + 1)
       } else {
         timerActive = true
         setBotAmount(botAmount + 1)
       }
+    }else {
+      Alert.alert("Too Expensive!")
     }
   }
   const addOneBotLevel = () => {
     if (count >= 10000) {
-      setCount(count - 10000)
-      if (timerActive) {
+      if (botLevel < 9) {
+        setCount(count - 1)
         setBotLevel(botLevel + 1)
+
+      }else {
+        Alert.alert("Bots are already at the highest level!")
       }
+    }else {
+      Alert.alert("Too Expensive!")
     }
   };
-  const tabTwo = () => Shop(count, addOne, addOneBot, addAmount, botAmount, addOneBotLevel, botLevel);
+  const tabTwo = () => Shop(count, addOne, addOneBot, addAmount, botAmount, addOneBotLevel, botLevel, props.colorScheme);
   return (
     <>
       <Tab.Navigator>

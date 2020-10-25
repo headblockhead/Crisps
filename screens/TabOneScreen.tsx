@@ -22,6 +22,7 @@ export const PressScr = (count: number, onClick: () => void, addAmount: number, 
       <Text></Text>
       <View style={styles.separatorsmall} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <Text style={styles.big}>{count}</Text>
+      
       <TouchableHighlight style={styles.buttonsurround} onPress={onClick}>
         <Image
           style={styles.buttonsurround}
