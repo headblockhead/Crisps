@@ -19,11 +19,8 @@ export const Shop = (count: number, addOne: () => void, addOneBot: () => void, p
   <ScrollView style={styles.scrollView}>
     <View style={styles.container}>
       <Text style={styles.title}>Shop</Text>
-      <View style={styles.separatorsmall} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <Text style={styles.subtitle1}>This is where you can buy equipment</Text>
-      <Text style={styles.subtitle1}>Or make upgrades to existing </Text>
-      <Text style={styles.subtitle1}>equipment</Text>
-      <View style={styles.separatorsmall} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+      <View style={styles.separatorsmall} lightColor="#eee" darkColor="rgba(255,255,255,0)" />
+
       <Text style={styles.title2}>Info:</Text>
       <Text style={styles.medium}>Cookies: {count}</Text>
       <Text style={styles.medium}>Points/click: {pointsPerClick}</Text>
@@ -47,8 +44,8 @@ const styles = StyleSheet.create({
 
   },
   scrollView: {
-    marginVertical: 10,
-    backgroundColor: 'rgba(0,0,0,0)'
+    marginVertical: 9,
+    backgroundColor: 'rgba(0,0,0,0.45)'
   },
   title: {
     fontSize: 30,

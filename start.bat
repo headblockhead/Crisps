@@ -1,0 +1,2 @@
+expo start
+pause

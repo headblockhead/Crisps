@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { Component } from 'react';
-import { Alert, Button, ScrollView, StyleSheet, Image, ImageBackground } from 'react-native';
+import { ScrollView, StyleSheet, Image } from 'react-native';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 import { Text, View } from '../components/Themed';
 
-export const PressScr = (count: number, onClick: () => void, addAmount: number, colorScheme: string) => (
+export const PressScr = (count: number, onClick: () => void, addAmount: number, colorScheme: string, Double: () => void) => (
   <ScrollView style={styles.scrollView}>
     <View style={styles.container} >
       <Text style={styles.title}>Cookie Collector</Text>
@@ -12,21 +11,19 @@ export const PressScr = (count: number, onClick: () => void, addAmount: number, 
       <Text style={styles.subtitle1}>This game is all about collecting,</Text>
       <Text style={styles.subtitle1}>and trading, cookies!</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <Text style={styles.para}>Press the Button at the bottom of the screen</Text>
-      <Text style={styles.para}>to get cookies!</Text>
-      <Text></Text>
-      <Text style={styles.para}>The faster you press, the faster you get cookies!</Text>
-      <Text></Text>
-      <Text style={styles.para}>Trade your cookies to buy upgrades to your button</Text>
-      <Text style={styles.para}> and even make the process automatic!</Text>
-      <Text></Text>
-      <View style={styles.separatorsmall} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <Text style={styles.big}>{count}</Text>
-      
+      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <TouchableHighlight style={styles.buttonsurround} onPress={onClick}>
         <Image
           style={styles.buttonsurround}
           source={colorScheme === "dark" ? require('../assets/images/button2.png') : require('../assets/images/button.png')}
+        />
+      </TouchableHighlight>
+      <View style={styles.separatorsmallerr} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+      <TouchableHighlight style={styles.buttonsurround} onPress={Double}>
+        <Image
+          style={styles.buttonsurround}
+          source={colorScheme === "dark" ? require('../assets/images/buttonpaydouble.png') : require('../assets/images/buttonpaydouble2.png')}
         />
       </TouchableHighlight>
     </View>
@@ -56,7 +53,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   para: {
-    fontSize: 13.5, 
+    fontSize: 13.5,
 
   },
   title: {
@@ -78,6 +75,11 @@ const styles = StyleSheet.create({
   },
   separatorsmall: {
     marginVertical: 18,
+    height: 1,
+    width: '80%',
+  },
+  separatorsmallerr: {
+    marginVertical: 8,
     height: 1,
     width: '80%',
   },

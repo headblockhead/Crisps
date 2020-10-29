@@ -6,6 +6,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { PressScr } from './screens/TabOneScreen';
 import { Shop } from './screens/TabTwoScreen';
+import { Info } from './screens/TabThreeScreen';
 
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
@@ -22,26 +23,43 @@ const StateContainer = (props: StateContainerProps) => {
   const [addAmount, setAddAmount] = useState(1);
   const [botAmount, setBotAmount] = useState(0);
   const [botLevel, setBotLevel] = useState(1);
+  const [diamonds, setDiamonds] = useState(0);
   useEffect(() => {
     const interval = setInterval(() => {
-        setSeconds(seconds => seconds + 1);
-      }, 1000);
+      setSeconds(seconds => seconds + 1);
+    }, 1000);
     return () => clearInterval(interval);
   });
   useEffect(() => {
+    var beforeadd = count
     var toText = seconds.toString(); //convert to string
     var lastChar = toText.slice(-1); //gets last character
     var lastDigit = +(lastChar); //convert last character to number
-   // console.log(lastDigit);
+    // console.log(lastDigit);
     const isBotActive = botLevel >= (lastDigit + 1);
-    if(isBotActive) {
+    if (isBotActive) {
       setCount(count => count + botAmount);
+      const multipleOf1000 = (x: number): boolean => x % 1000 == 0;
+      for (let i = botAmount; i >= -1; i--) {
+        if (multipleOf1000(beforeadd + i)) {
+          setDiamonds(diamonds + 1)
+        }
+      }
+
     }
+
+
   }, [seconds]);
 
   const tabOne = () => PressScr(count, () => {
     setCount(count + addAmount);
-  }, addAmount, props.colorScheme);
+  }, addAmount, props.colorScheme, () => {
+    if (diamonds > 50) {
+      setDiamonds(diamonds - 50)
+      setCount(count * 2)
+    }
+  }
+  )
 
   const addOne = () => {
     if (count >= 100) {
@@ -52,7 +70,7 @@ const StateContainer = (props: StateContainerProps) => {
     }
   };
   const addOneBot = () => {
-    if (count >= 1) {
+    if (count >= 1000) {
       setCount(count - 1)
       setBotAmount(botAmount + 1)
     } else {
@@ -60,7 +78,7 @@ const StateContainer = (props: StateContainerProps) => {
     }
   }
   const addOneBotLevel = () => {
-    if (count >= 1) {
+    if (count >= 10000) {
       if (botLevel < 10) {
         setCount(count - 1)
         setBotLevel(botLevel + 1)
@@ -72,11 +90,13 @@ const StateContainer = (props: StateContainerProps) => {
     }
   };
   const tabTwo = () => Shop(count, addOne, addOneBot, addAmount, botAmount, addOneBotLevel, botLevel, props.colorScheme);
+  const tabThree = () => Info()
   return (
     <>
       <Tab.Navigator>
-        <Tab.Screen name="Gathering Zone" component={tabOne} />
-        <Tab.Screen name="Trading Zone" component={tabTwo} />
+        <Tab.Screen name="Info" component={tabThree} />
+        <Tab.Screen name="Cookies" component={tabOne} />
+        <Tab.Screen name="Shop" component={tabTwo} />
       </Tab.Navigator>
     </>
   )
