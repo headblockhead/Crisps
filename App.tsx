@@ -71,8 +71,8 @@ const StateContainer = (props: StateContainerProps) => {
   };
   const addOneBot = () => {
     if (count >= 1000) {
-      setCount(count - 1)
-      setBotAmount(botAmount + 1)
+      setCount(count - 1000)
+      setBotAmount(botAmount + 1000)
     } else {
       Alert.alert("Too Expensive!")
     }
@@ -80,8 +80,8 @@ const StateContainer = (props: StateContainerProps) => {
   const addOneBotLevel = () => {
     if (count >= 10000) {
       if (botLevel < 10) {
-        setCount(count - 1)
-        setBotLevel(botLevel + 1)
+        setCount(count - 10000)
+        setBotLevel(botLevel + 10000)
       } else {
         Alert.alert("Bots are already at the highest level!")
       }
