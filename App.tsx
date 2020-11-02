@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
+import { Audio, AVPlaybackStatusToSet, Video } from 'expo-av';
 import { Alert, ImageBackground, StyleSheet } from 'react-native';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -16,6 +17,10 @@ const Tab = createBottomTabNavigator();
 interface StateContainerProps {
   colorScheme: string,
 }
+
+var randommunch = 10
+
+const munchSound = require('./assets/audio/munch/munch' + randommunch.toString() + '.wav');
 
 const StateContainer = (props: StateContainerProps) => {
   const [seconds, setSeconds] = useState(0);
@@ -45,11 +50,13 @@ const StateContainer = (props: StateContainerProps) => {
           setDiamonds(diamonds + 1)
         }
       }
-
     }
-
-
   }, [seconds]);
+  useEffect(() => {
+    const munch = new Audio.Sound();
+    munch.loadAsync(munchSound, { shouldPlay: true } as AVPlaybackStatusToSet);
+    setTimeout(() => munch.unloadAsync(), 5000);
+  }, [count])
 
   const tabOne = () => PressScr(count, () => {
     setCount(count + addAmount);
