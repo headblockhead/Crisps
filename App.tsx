@@ -19,24 +19,31 @@ interface StateContainerProps {
   colorScheme: string,
 }
 
-const sounds = new Array(17);
-sounds[0] = require(`./assets/audio/munch/munch1.wav`);
-sounds[1] = require(`./assets/audio/munch/munch2.wav`);
-sounds[2] = require(`./assets/audio/munch/munch3.wav`);
-sounds[3] = require(`./assets/audio/munch/munch4.wav`);
-sounds[4] = require(`./assets/audio/munch/munch5.wav`);
-sounds[5] = require(`./assets/audio/munch/munch6.wav`);
-sounds[6] = require(`./assets/audio/munch/munch7.wav`);
-sounds[7] = require(`./assets/audio/munch/munch8.wav`);
-sounds[8] = require(`./assets/audio/munch/munch9.wav`);
-sounds[9] = require(`./assets/audio/munch/munch10.wav`);
-sounds[10] = require(`./assets/audio/munch/munch11.wav`);
-sounds[11] = require(`./assets/audio/munch/munch12.wav`);
-sounds[12] = require(`./assets/audio/munch/munch13.wav`);
-sounds[13] = require(`./assets/audio/munch/munch14.wav`);
-sounds[14] = require(`./assets/audio/munch/munch15.wav`);
-sounds[15] = require(`./assets/audio/munch/munch16.wav`);
-sounds[16] = require(`./assets/audio/munch/munch17.wav`);
+const munchsounds = new Array(17);
+munchsounds[0] = require(`./assets/audio/munch/munch1.wav`);
+munchsounds[1] = require(`./assets/audio/munch/munch2.wav`);
+munchsounds[2] = require(`./assets/audio/munch/munch3.wav`);
+munchsounds[3] = require(`./assets/audio/munch/munch4.wav`);
+munchsounds[4] = require(`./assets/audio/munch/munch5.wav`);
+munchsounds[5] = require(`./assets/audio/munch/munch6.wav`);
+munchsounds[6] = require(`./assets/audio/munch/munch7.wav`);
+munchsounds[7] = require(`./assets/audio/munch/munch8.wav`);
+munchsounds[8] = require(`./assets/audio/munch/munch9.wav`);
+munchsounds[9] = require(`./assets/audio/munch/munch10.wav`);
+munchsounds[10] = require(`./assets/audio/munch/munch11.wav`);
+munchsounds[11] = require(`./assets/audio/munch/munch12.wav`);
+munchsounds[12] = require(`./assets/audio/munch/munch13.wav`);
+munchsounds[13] = require(`./assets/audio/munch/munch14.wav`);
+munchsounds[14] = require(`./assets/audio/munch/munch15.wav`);
+munchsounds[15] = require(`./assets/audio/munch/munch16.wav`);
+munchsounds[16] = require(`./assets/audio/munch/munch17.wav`);
+
+const registerSounds = new Array(4);
+registerSounds[0] = require(`./assets/audio/cha/cha.wav`);
+registerSounds[1] = require(`./assets/audio/cha/cha.wav`);
+registerSounds[2] = require(`./assets/audio/cha/cha.wav`);
+registerSounds[3] = require(`./assets/audio/cha/cha.wav`);
+registerSounds[4] = require(`./assets/audio/cha/cha.wav`);
 
 
 // sounds[Math.floor(Math.random() * (18 - 1) + 1)]
@@ -73,10 +80,17 @@ const StateContainer = (props: StateContainerProps) => {
   }, [seconds]);
   useEffect(() => {
     const munch = new Audio.Sound();
-    const munchSound = sounds[Math.floor(Math.random() * (16 - 0) + 0)]
+    const munchSound = munchsounds[Math.floor(Math.random() * (16 - 0) + 0)]
     munch.loadAsync(munchSound, { shouldPlay: true } as AVPlaybackStatusToSet);
     setTimeout(() => munch.unloadAsync(), 5000);
   }, [count])
+
+  useEffect(() => {
+    const cha = new Audio.Sound();
+    const chaSound = registerSounds[Math.floor(Math.random() * (4 - 0) + 0)]
+    cha.loadAsync(chaSound, { shouldPlay: true } as AVPlaybackStatusToSet);
+    setTimeout(() => cha.unloadAsync(), 5000);
+  }, [botAmount,addAmount,botLevel])
 
   const tabOne = () => PressScr(count, () => {
     setCount(count + addAmount);
