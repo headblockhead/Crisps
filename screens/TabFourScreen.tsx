@@ -18,8 +18,6 @@ const getButtonColor = (colorScheme: string) => {
 export const Credits = (colorScheme: string) => (
     <ScrollView style={styles.scrollView}>
         <View style={styles.container}>
-
-
             <Text style={styles.title}>Credits:</Text>
             <View style={styles.invisisep} lightColor="rgba(255,255,255,0)" darkColor="rgba(255,255,255,0)" />
             <Text style={styles.parabig}>Here are the credits for the authors of some sounds used in the game and the developer behind the game.</Text>
@@ -28,17 +26,19 @@ export const Credits = (colorScheme: string) => (
             <Text style={styles.title}>Sounds:</Text>
             <Text></Text>
             <Text style={styles.para}>The sound made when purchasing an upgrade or enhancement was made by Muska666. See below for source url: </Text>
-            <Button color={getButtonColor(colorScheme)} onPress={() => { Linking.openURL("https://soundbible.com/1997-Cha-Ching-Register.html"); }} title= "https://soundbible.com/1997-Cha-Ching-Register.html"/>
+            <Text>http://soundbible.com/1997-Cha-Ching-Register.html</Text>
             <Text></Text>
-
             <Text style={styles.title}>Licence:</Text>
-            <Button color={getButtonColor(colorScheme)} onPress={() => { Linking.openURL("https://creativecommons.org/licenses/by/3.0/legalcode"); }} title= "https://creativecommons.org/licenses/by/3.0/legalcode"/>
-
+            <Text>https://creativecommons.org/licenses/by/3.0/legalcode</Text>
             <View style={styles.separatorsmallerr} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
         </View>
     </ScrollView>
 )
 const styles = StyleSheet.create({
+    text: {
+        fontSize: 18,
+        color: 'black',
+    },
     separatorsmall: {
 
         marginVertical: 18,

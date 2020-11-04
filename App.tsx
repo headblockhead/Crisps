@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
-import { Audio, AVPlaybackStatusToSet, Video } from 'expo-av';
+import { Audio, AVPlaybackStatusToSet } from 'expo-av';
 import { Alert, ImageBackground, StyleSheet } from 'react-native';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
