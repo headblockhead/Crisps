@@ -1,42 +1,46 @@
 import * as React from 'react';
-import { Component } from 'react';
-import { Alert, Button, ScrollView, StyleSheet, Image, ImageBackground } from 'react-native';
-import { TouchableHighlight } from 'react-native-gesture-handler';
+import { ScrollView, StyleSheet, Linking, useColorScheme, Button } from 'react-native';
 import { Text, View } from '../components/Themed';
 
-export const Info = () => (
+const getButtonColors = (scheme: string): string => {
+    if (scheme === "dark") {
+        return "red";
+    }
+    return "rgb(200,0,0)"
+}
+
+const getButtonColor = (colorScheme: string) => {
+    const color = getButtonColors(colorScheme);
+    return color
+}
+
+
+export const Credits = (colorScheme: string) => (
     <ScrollView style={styles.scrollView}>
         <View style={styles.container}>
 
 
-            <Text style={styles.title}>Tutorial:</Text>
+            <Text style={styles.title}>Credits:</Text>
             <View style={styles.invisisep} lightColor="rgba(255,255,255,0)" darkColor="rgba(255,255,255,0)" />
+            <Text style={styles.parabig}>Here are the credits for the authors of some sounds used in the game and the developer behind the game.</Text>
+            <Text></Text>
 
-            <Text style={styles.parabig}>This game has one (and only one) objective:</Text>
-            <Text style={styles.parabig}> GET AS MANY COOKIES AS POSSIBLE! </Text>
+            <Text style={styles.title}>Sounds:</Text>
             <Text></Text>
-            <Text style={styles.para}>Use the shop to buy equipment and speed up getting your cookies.</Text>
+            <Text style={styles.para}>The sound made when purchasing an upgrade or enhancement was made by Muska666. See below for source url: </Text>
+            <Button color={getButtonColor(colorScheme)} onPress={() => { Linking.openURL("https://soundbible.com/1997-Cha-Ching-Register.html"); }} title= "https://soundbible.com/1997-Cha-Ching-Register.html"/>
             <Text></Text>
-            <Text style={styles.para}>Save your cookies to climb</Text>
-            <Text style={styles.para}> the leaderboard and be number one!</Text>
+
+            <Text style={styles.title}>Licence:</Text>
+            <Button color={getButtonColor(colorScheme)} onPress={() => { Linking.openURL("https://creativecommons.org/licenses/by/3.0/legalcode"); }} title= "https://creativecommons.org/licenses/by/3.0/legalcode"/>
 
             <View style={styles.separatorsmallerr} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-
-            <Text style={styles.title}>Cookies:</Text>
-            <View style={styles.invisisep} lightColor="rgba(255,255,255,0)" darkColor="rgba(255,255,255,0)" />
-            <Text style={styles.para}>Press the Button at the bottom of the screen</Text>
-            <Text style={styles.para}> (Of the 'Cookies' tab) to get cookies!</Text>
-            <View style={styles.separatorsmallerr} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-            <Text style={styles.title} >Diamonds:</Text>
-            <View style={styles.invisisep} lightColor="rgba(255,255,255,0)" darkColor="rgba(255,255,255,0)" />
-            <Text style={styles.para}>You get 1 diamond per 1,000 cookies </Text>
-            <Text style={styles.para}> and can spend it on other perks</Text>
-            <Text style={styles.para}> (like doubling your current cookie balance)</Text>
         </View>
     </ScrollView>
 )
 const styles = StyleSheet.create({
     separatorsmall: {
+
         marginVertical: 18,
         height: 1,
         width: '80%',

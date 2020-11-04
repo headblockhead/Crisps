@@ -7,7 +7,8 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { PressScr } from './screens/TabOneScreen';
 import { Shop } from './screens/TabTwoScreen';
-import { Info } from './screens/TabThreeScreen';
+import { Info } from './screens/TabThreeScreen'; 
+import { Credits } from './screens/TabFourScreen'; 
 
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
@@ -18,9 +19,27 @@ interface StateContainerProps {
   colorScheme: string,
 }
 
-var randommunch = 10
+const sounds = new Array(17);
+sounds[0] = require(`./assets/audio/munch/munch1.wav`);
+sounds[1] = require(`./assets/audio/munch/munch2.wav`);
+sounds[2] = require(`./assets/audio/munch/munch3.wav`);
+sounds[3] = require(`./assets/audio/munch/munch4.wav`);
+sounds[4] = require(`./assets/audio/munch/munch5.wav`);
+sounds[5] = require(`./assets/audio/munch/munch6.wav`);
+sounds[6] = require(`./assets/audio/munch/munch7.wav`);
+sounds[7] = require(`./assets/audio/munch/munch8.wav`);
+sounds[8] = require(`./assets/audio/munch/munch9.wav`);
+sounds[9] = require(`./assets/audio/munch/munch10.wav`);
+sounds[10] = require(`./assets/audio/munch/munch11.wav`);
+sounds[11] = require(`./assets/audio/munch/munch12.wav`);
+sounds[12] = require(`./assets/audio/munch/munch13.wav`);
+sounds[13] = require(`./assets/audio/munch/munch14.wav`);
+sounds[14] = require(`./assets/audio/munch/munch15.wav`);
+sounds[15] = require(`./assets/audio/munch/munch16.wav`);
+sounds[16] = require(`./assets/audio/munch/munch17.wav`);
 
-const munchSound = require('./assets/audio/munch/munch' + randommunch.toString() + '.wav');
+
+// sounds[Math.floor(Math.random() * (18 - 1) + 1)]
 
 const StateContainer = (props: StateContainerProps) => {
   const [seconds, setSeconds] = useState(0);
@@ -54,6 +73,7 @@ const StateContainer = (props: StateContainerProps) => {
   }, [seconds]);
   useEffect(() => {
     const munch = new Audio.Sound();
+    const munchSound = sounds[Math.floor(Math.random() * (16 - 0) + 0)]
     munch.loadAsync(munchSound, { shouldPlay: true } as AVPlaybackStatusToSet);
     setTimeout(() => munch.unloadAsync(), 5000);
   }, [count])
@@ -98,12 +118,14 @@ const StateContainer = (props: StateContainerProps) => {
   };
   const tabTwo = () => Shop(count, addOne, addOneBot, addAmount, botAmount, addOneBotLevel, botLevel, props.colorScheme);
   const tabThree = () => Info()
+  const tabFour = () => Credits(props.colorScheme)
   return (
     <>
       <Tab.Navigator>
         <Tab.Screen name="Info" component={tabThree} />
         <Tab.Screen name="Cookies" component={tabOne} />
         <Tab.Screen name="Shop" component={tabTwo} />
+        <Tab.Screen name="Credits" component={tabFour} />
       </Tab.Navigator>
     </>
   )
