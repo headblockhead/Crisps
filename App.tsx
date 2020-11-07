@@ -38,7 +38,7 @@ munchsounds[14] = require(`./assets/audio/munch/munch15.wav`);
 munchsounds[15] = require(`./assets/audio/munch/munch16.wav`);
 munchsounds[16] = require(`./assets/audio/munch/munch17.wav`);
 
-const registerSounds = new Array(4);
+const registerSounds = new Array(2);
 registerSounds[0] = require(`./assets/audio/cha/cha.wav`);
 registerSounds[1] = require(`./assets/audio/cha/cha2.wav`);
 registerSounds[2] = require(`./assets/audio/cha/cha3.wav`);
