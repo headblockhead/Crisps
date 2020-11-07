@@ -40,10 +40,8 @@ munchsounds[16] = require(`./assets/audio/munch/munch17.wav`);
 
 const registerSounds = new Array(4);
 registerSounds[0] = require(`./assets/audio/cha/cha.wav`);
-registerSounds[1] = require(`./assets/audio/cha/cha.wav`);
-registerSounds[2] = require(`./assets/audio/cha/cha.wav`);
-registerSounds[3] = require(`./assets/audio/cha/cha.wav`);
-registerSounds[4] = require(`./assets/audio/cha/cha.wav`);
+registerSounds[1] = require(`./assets/audio/cha/cha2.wav`);
+registerSounds[2] = require(`./assets/audio/cha/cha3.wav`);
 
 
 // sounds[Math.floor(Math.random() * (18 - 1) + 1)]
@@ -87,7 +85,7 @@ const StateContainer = (props: StateContainerProps) => {
 
   useEffect(() => {
     const cha = new Audio.Sound();
-    const chaSound = registerSounds[Math.floor(Math.random() * (4 - 0) + 0)]
+    const chaSound = registerSounds[Math.floor(Math.random() * (2 - 0) + 0)]
     cha.loadAsync(chaSound, { shouldPlay: true } as AVPlaybackStatusToSet);
     setTimeout(() => cha.unloadAsync(), 5000);
   }, [botAmount,addAmount,botLevel])
@@ -111,18 +109,18 @@ const StateContainer = (props: StateContainerProps) => {
     }
   };
   const addOneBot = () => {
-    if (count >= 1000) {
-      setCount(count - 1000)
-      setBotAmount(botAmount + 1000)
+    if (count >= 1) {
+      setCount(count - 1)
+      setBotAmount(botAmount + 1)
     } else {
       Alert.alert("Too Expensive!")
     }
   }
   const addOneBotLevel = () => {
-    if (count >= 10000) {
+    if (count >= 1) {
       if (botLevel < 10) {
-        setCount(count - 10000)
-        setBotLevel(botLevel + 10000)
+        setCount(count - 1)
+        setBotLevel(botLevel + 1)
       } else {
         Alert.alert("Bots are already at the highest level!")
       }
