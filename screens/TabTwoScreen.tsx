@@ -16,7 +16,7 @@ const getButtonColor = (colorScheme: string, price: number, count: number) => {
   return canAfford ? colors[1] : colors[0];
 }
 
-export const Shop = (count: number, addOne: () => void, addOneBot: () => void, pointsPerClick: number, botCount: number, addOneBotLevel: () => void, botLevel: number, colorScheme: string) => (
+export const Shop = (count: number, addOne: () => void, addOneBot: () => void, pointsPerClick: number, botCount: number, addOneBotLevel: () => void, botLevel: number, colorScheme: string, diamonds: number) => (
   <ScrollView style={styles.scrollView}>
     <View style={styles.container}>
       <View style={styles.invisisep} lightColor="rgba(255,255,255,0)" darkColor="rgba(255,255,255,0)" />
@@ -25,7 +25,9 @@ export const Shop = (count: number, addOne: () => void, addOneBot: () => void, p
       <View style={styles.separatorsmall} lightColor="#eee" darkColor="rgba(255,255,255,0)" />
 
       <Text style={styles.title2}>Info:</Text>
+
       <Text style={styles.medium}>Cookies: {count}</Text>
+      <Text style={styles.medium}>Diamonds: { diamonds } </Text>
       <Text style={styles.medium}>Points/click: {pointsPerClick}</Text>
       <Text style={styles.medium}>Bots: {botCount}</Text>
       <Text style={styles.medium}>Bot level: {botLevel}</Text>

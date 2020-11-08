@@ -22,14 +22,12 @@ export const Credits = (colorScheme: string) => (
             <View style={styles.invisisep} lightColor="rgba(255,255,255,0)" darkColor="rgba(255,255,255,0)" />
             <Text style={styles.parabig}>Here are the credits for the authors of some sounds used in the game and the developer behind the game.</Text>
             <Text></Text>
-
             <Text style={styles.title}>Sounds:</Text>
             <Text></Text>
-            <Text style={styles.para}>The sound made when purchasing an upgrade or enhancement was made by Muska666. See below for source url: </Text>
-            <Text>http://soundbible.com/1997-Cha-Ching-Register.html</Text>
+            <Text style={styles.para}>The sound made when purchasing an upgrade or enhancement was made by Muska666. Source url: http://soundbible.com/1997-Cha-Ching-Register.html</Text> 
             <Text></Text>
             <Text style={styles.title}>Licence:</Text>
-            <Text>https://creativecommons.org/licenses/by/3.0/legalcode</Text>
+            <Text style={styles.para}>https://creativecommons.org/licenses/by/3.0/legalcode</Text>
             <View style={styles.separatorsmallerr} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
         </View>
     </ScrollView>

@@ -136,7 +136,7 @@ const StateContainer = (props: StateContainerProps) => {
       setCount(count * 2)
     }
   });
-  const tabTwo = () => Shop(count, addOne, addOneBot, addAmount, botAmount, addOneBotLevel, botLevel, props.colorScheme);
+  const tabTwo = () => Shop(count, addOne, addOneBot, addAmount, botAmount, addOneBotLevel, botLevel, props.colorScheme, diamonds);
   const tabThree = () => Info()
   const tabFour = () => Credits(props.colorScheme)
 
