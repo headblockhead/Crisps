@@ -7,8 +7,9 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { PressScr } from './screens/TabOneScreen';
 import { Shop } from './screens/TabTwoScreen';
-import { Info } from './screens/TabThreeScreen'; 
-import { Credits } from './screens/TabFourScreen'; 
+import { Info } from './screens/TabThreeScreen';
+import { Credits } from './screens/TabFourScreen';
+import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
@@ -46,7 +47,16 @@ registerSounds[2] = require(`./assets/audio/cha/cha3.wav`);
 
 // sounds[Math.floor(Math.random() * (18 - 1) + 1)]
 
+interface State {
+  count: number
+  addAmount: number
+  botAmount: number
+  botLevel: number
+  diamonds: number
+}
+
 const StateContainer = (props: StateContainerProps) => {
+  const [isLoaded, setIsLoaded] = useState(false);
   const [seconds, setSeconds] = useState(0);
   const [count, setCount] = useState(0);
   const [addAmount, setAddAmount] = useState(1);
@@ -60,45 +70,35 @@ const StateContainer = (props: StateContainerProps) => {
     return () => clearInterval(interval);
   });
   useEffect(() => {
-    var beforeadd = count
+    var beforeAdd = count
     var toText = seconds.toString(); //convert to string
     var lastChar = toText.slice(-1); //gets last character
     var lastDigit = +(lastChar); //convert last character to number
-    // console.log(lastDigit);
     const isBotActive = botLevel >= (lastDigit + 1);
     if (isBotActive) {
       setCount(count => count + botAmount);
       const multipleOf1000 = (x: number): boolean => x % 1000 == 0;
       for (let i = botAmount; i >= -1; i--) {
-        if (multipleOf1000(beforeadd + i)) {
+        if (multipleOf1000(beforeAdd + i)) {
           setDiamonds(diamonds + 1)
         }
       }
     }
   }, [seconds]);
   useEffect(() => {
+    if(!isLoaded) { return }
     const munch = new Audio.Sound();
     const munchSound = munchsounds[Math.floor(Math.random() * (16 - 0) + 0)]
     munch.loadAsync(munchSound, { shouldPlay: true } as AVPlaybackStatusToSet);
     setTimeout(() => munch.unloadAsync(), 5000);
-  }, [count])
-
+  }, [count]);
   useEffect(() => {
+    if(!isLoaded) { return }
     const cha = new Audio.Sound();
     const chaSound = registerSounds[Math.floor(Math.random() * (2 - 0) + 0)]
     cha.loadAsync(chaSound, { shouldPlay: true } as AVPlaybackStatusToSet);
     setTimeout(() => cha.unloadAsync(), 5000);
-  }, [botAmount,addAmount,botLevel])
-
-  const tabOne = () => PressScr(count, () => {
-    setCount(count + addAmount);
-  }, addAmount, props.colorScheme, () => {
-    if (diamonds > 50) {
-      setDiamonds(diamonds - 50)
-      setCount(count * 2)
-    }
-  }
-  )
+  }, [botAmount, addAmount, botLevel]);
 
   const addOne = () => {
     if (count >= 100) {
@@ -109,17 +109,17 @@ const StateContainer = (props: StateContainerProps) => {
     }
   };
   const addOneBot = () => {
-    if (count >= 1) {
-      setCount(count - 1)
+    if (count >= 1000) {
+      setCount(count - 1000)
       setBotAmount(botAmount + 1)
     } else {
       Alert.alert("Too Expensive!")
     }
   }
   const addOneBotLevel = () => {
-    if (count >= 1) {
+    if (count >= 10000) {
       if (botLevel < 10) {
-        setCount(count - 1)
+        setCount(count - 10000)
         setBotLevel(botLevel + 1)
       } else {
         Alert.alert("Bots are already at the highest level!")
@@ -128,9 +128,54 @@ const StateContainer = (props: StateContainerProps) => {
       Alert.alert("Too Expensive!")
     }
   };
+  const tabOne = () => PressScr(count, () => {
+    setCount(count + addAmount);
+  }, addAmount, props.colorScheme, () => {
+    if (diamonds > 50) {
+      setDiamonds(diamonds - 50)
+      setCount(count * 2)
+    }
+  });
   const tabTwo = () => Shop(count, addOne, addOneBot, addAmount, botAmount, addOneBotLevel, botLevel, props.colorScheme);
   const tabThree = () => Info()
   const tabFour = () => Credits(props.colorScheme)
+
+  // Store the state.
+  const { getItem, setItem } = useAsyncStorage('@clicker_state');
+  const loadStateFromStorage = async () => {
+    const s = await getItem();
+    if (!s) {
+      return;
+    }
+    const item = JSON.parse(s);
+    setCount(item.count);
+    setAddAmount(item.addAmount);
+    setBotAmount(item.botAmount);
+    setBotLevel(item.botLevel);
+    setDiamonds(item.diamonds);
+    setIsLoaded(true);
+  };
+  useEffect(() => {
+    async function setState() {
+      if (isLoaded) {
+        console.log("Setting state.")
+        const state: State = {
+          count,
+          addAmount,
+          botAmount,
+          botLevel,
+          diamonds,
+        };
+        await setItem(JSON.stringify(state));
+      }
+    }
+    setState();
+  }, [count, addAmount, botAmount, botLevel, diamonds])
+  useEffect(() => {
+    console.log("Loading state.")
+    loadStateFromStorage();
+  }, []);
+
   return (
     <>
       <Tab.Navigator>
