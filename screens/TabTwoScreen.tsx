@@ -25,9 +25,9 @@ export const Shop = (count: number, addOne: () => void, addOneBot: () => void, p
       <View style={styles.separatorsmall} lightColor="#eee" darkColor="rgba(255,255,255,0)" />
 
       <Text style={styles.title2}>Info:</Text>
-
-      <Text style={styles.medium}>Cookies: {count}</Text>
-      <Text style={styles.medium}>Diamonds: { diamonds } </Text>
+      <Text></Text>
+      <Text style={styles.medium}>Crisps: {count}</Text>
+      <Text style={styles.medium}>Diamonds: {diamonds} </Text>
       <Text style={styles.medium}>Points/click: {pointsPerClick}</Text>
       <Text style={styles.medium}>Bots: {botCount}</Text>
       <Text style={styles.medium}>Bot level: {botLevel}</Text>

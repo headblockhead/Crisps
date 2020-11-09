@@ -1,37 +1,40 @@
 import * as React from 'react';
-import { Component } from 'react';
-import { Alert, Button, ScrollView, StyleSheet, Image, ImageBackground } from 'react-native';
-import { TouchableHighlight } from 'react-native-gesture-handler';
+import { ScrollView, StyleSheet } from 'react-native';
 import { Text, View } from '../components/Themed';
 
 export const Info = () => (
     <ScrollView style={styles.scrollView}>
         <View style={styles.container}>
 
-
+            <View style={styles.smallinvisisep} lightColor="rgba(255,255,255,0)" darkColor="rgba(255,255,255,0)" />
+            <Text style={styles.minititle}>This game is all about collecting,</Text>
+      <Text style={styles.minititle}>and selling, circuit boards!</Text>
+      <View style={styles.invisisep} lightColor="rgba(255,255,255,0)" darkColor="rgba(255,255,255,0)" />
             <Text style={styles.title}>Tutorial:</Text>
             <View style={styles.invisisep} lightColor="rgba(255,255,255,0)" darkColor="rgba(255,255,255,0)" />
 
             <Text style={styles.parabig}>This game has one (and only one) objective:</Text>
-            <Text style={styles.parabig}> GET AS MANY COOKIES AS POSSIBLE! </Text>
+            <Text style={styles.parabig}>GET AS MANY CRISPS</Text>
+            <Text style={styles.parabig}>AS POSSIBLE! </Text>
             <Text></Text>
-            <Text style={styles.para}>Use the shop to buy equipment and speed up getting your cookies.</Text>
+            <Text style={styles.para}>Use the shop to buy equipment and </Text>
+            <Text style={styles.para}> speed up making your crisps.</Text>
             <Text></Text>
-            <Text style={styles.para}>Save your cookies to climb</Text>
+            <Text style={styles.para}>Save your crisps to climb</Text>
             <Text style={styles.para}> the leaderboard and be number one!</Text>
 
             <View style={styles.separatorsmallerr} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
 
-            <Text style={styles.title}>Cookies:</Text>
+            <Text style={styles.title}>Crisps :</Text>
             <View style={styles.invisisep} lightColor="rgba(255,255,255,0)" darkColor="rgba(255,255,255,0)" />
             <Text style={styles.para}>Press the Button at the bottom of the screen</Text>
-            <Text style={styles.para}> (Of the 'Cookies' tab) to get cookies!</Text>
+            <Text style={styles.para}> (On the 'Crisps' tab) to make Crisps!</Text>
             <View style={styles.separatorsmallerr} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
             <Text style={styles.title} >Diamonds:</Text>
             <View style={styles.invisisep} lightColor="rgba(255,255,255,0)" darkColor="rgba(255,255,255,0)" />
-            <Text style={styles.para}>You get 1 diamond per 1,000 cookies </Text>
-            <Text style={styles.para}> and can spend it on other perks</Text>
-            <Text style={styles.para}> (like doubling your current cookie balance)</Text>
+            <Text style={styles.para}>You get a few diamonds every 1,000 Crisps </Text>
+            <Text style={styles.para}>made and can spend it on other perks</Text>
+            <Text style={styles.parasmall}> (like doubling your current balance of crisps)</Text>
         </View>
     </ScrollView>
 )
@@ -43,6 +46,11 @@ const styles = StyleSheet.create({
     },
     invisisep: {
         marginVertical: 8,
+        height: 1,
+        width: '80%',
+    },
+    smallinvisisep: {
+        marginVertical: 1,
         height: 1,
         width: '80%',
     },
@@ -75,6 +83,10 @@ const styles = StyleSheet.create({
         fontSize: 14.5,
 
     },
+    parasmall: {
+        fontSize: 12.5,
+
+    },
     title: {
         fontSize: 30,
         fontWeight: 'bold',
@@ -85,6 +97,10 @@ const styles = StyleSheet.create({
     },
     subtitle1: {
         fontSize: 17,
+        fontWeight: 'bold',
+    },
+    minititle: {
+        fontSize: 15,
         fontWeight: 'bold',
     },
     separator: {

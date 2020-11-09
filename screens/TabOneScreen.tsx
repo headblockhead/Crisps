@@ -6,10 +6,7 @@ import { Text, View } from '../components/Themed';
 export const PressScr = (count: number, onClick: () => void, addAmount: number, colorScheme: string, Double: () => void) => (
   <ScrollView style={styles.scrollView}>
     <View style={styles.container} >
-      <Text style={styles.title}>Cookie Collector</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <Text style={styles.subtitle1}>This game is all about collecting,</Text>
-      <Text style={styles.subtitle1}>and trading, cookies!</Text>
+      <Text style={styles.title}>Crisps Cruncher</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <Text style={styles.big}>{count}</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />

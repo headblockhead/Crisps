@@ -180,7 +180,7 @@ const StateContainer = (props: StateContainerProps) => {
     <>
       <Tab.Navigator>
         <Tab.Screen name="Info" component={tabThree} />
-        <Tab.Screen name="Cookies" component={tabOne} />
+        <Tab.Screen name="Crisps" component={tabOne} />
         <Tab.Screen name="Shop" component={tabTwo} />
         <Tab.Screen name="Credits" component={tabFour} />
       </Tab.Navigator>
