@@ -3,12 +3,13 @@ import { ScrollView, StyleSheet, Image } from 'react-native';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 import { Text, View } from '../components/Themed';
 
-export const PressScr = (count: number, onClick: () => void, addAmount: number, colorScheme: string, Double: () => void) => (
+export const PressScr = (count: number, onClick: () => void, addAmount: number, colorScheme: string, Double: () => void, diamond: number) => (
   <ScrollView style={styles.scrollView}>
     <View style={styles.container} >
       <Text style={styles.title}>Crisp Cruncher!</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <Text style={styles.big}>{count}</Text>
+      <Text style={styles.big}>🍪   {count}   🍪</Text>
+      <Text style={styles.big}>💎   {diamond}   💎</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <TouchableHighlight style={styles.buttonsurround} onPress={onClick}>
         <Image
@@ -20,7 +21,7 @@ export const PressScr = (count: number, onClick: () => void, addAmount: number, 
       <TouchableHighlight style={styles.buttonsurround} onPress={Double}>
         <Image
           style={styles.buttonsurround}
-          source={colorScheme === "dark" ? require('../assets/images/buttonpaydouble.png') : require('../assets/images/buttonpaydouble2.png')}
+          source={colorScheme === "dark" ? require('../assets/images/buttonpaydouble2.png') : require('../assets/images/buttonpaydouble.png')}
         />
       </TouchableHighlight>
     </View>

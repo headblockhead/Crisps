@@ -64,6 +64,17 @@ const StateContainer = (props: StateContainerProps) => {
   const [botAmount, setBotAmount] = useState(0);
   const [botLevel, setBotLevel] = useState(1);
   const [diamonds, setDiamonds] = useState(0);
+
+const isDivisible = (x: number, by: number) => (x % by) === 0;
+
+  function isMultipleOf(a: number, multiple: number) {
+    var divRemainder = a % multiple
+    if (divRemainder != 0) {
+      return false
+    }
+    return true
+  }
+
   useEffect(() => {
     const interval = setInterval(() => {
       setSeconds(seconds => seconds + 1);
@@ -71,13 +82,20 @@ const StateContainer = (props: StateContainerProps) => {
     return () => clearInterval(interval);
   });
   useEffect(() => {
-    var beforeAdd = count
+
     var toText = seconds.toString(); //convert to string
     var lastChar = toText.slice(-1); //gets last character
     var lastDigit = +(lastChar); //convert last character to number
-    const isBotActive = botLevel >= (lastDigit + 1);
+    const isBotActive = botLevel >= (lastDigit + 1) && botAmount != 0;
     if (isBotActive) {
+      var beforeAdd = count
       setCount(count => count + botAmount);
+      var num;
+      for (num = count - botAmount; num <= count;num++) {
+        if (isMultipleOf(num,20)) {
+          setDiamonds(diamonds + 1)
+        }
+      }
     }
   }, [seconds]);
   useEffect(() => {
@@ -86,6 +104,10 @@ const StateContainer = (props: StateContainerProps) => {
     const munchSound = munchsounds[Math.floor(Math.random() * (16 - 0) + 0)]
     munch.loadAsync(munchSound, { shouldPlay: true } as AVPlaybackStatusToSet);
     setTimeout(() => munch.unloadAsync(), 5000);
+    if (isMultipleOf(count,20)) {
+      setDiamonds(diamonds + 1)
+    }
+
   }, [count]);
   useEffect(() => {
     if (!isLoaded) { return }
@@ -104,17 +126,17 @@ const StateContainer = (props: StateContainerProps) => {
     }
   };
   const addOneBot = () => {
-    if (count >= 1000) {
-      setCount(count - 1000)
+    if (count >= 1) {
+      setCount(count - 1)
       setBotAmount(botAmount + 1)
     } else {
       Alert.alert("Too Expensive!")
     }
   }
   const addOneBotLevel = () => {
-    if (count >= 10000) {
+    if (count >= 1) {
       if (botLevel < 10) {
-        setCount(count - 10000)
+        setCount(count - 1)
         setBotLevel(botLevel + 1)
       } else {
         Alert.alert("Bots are already at the highest level!")
@@ -130,7 +152,7 @@ const StateContainer = (props: StateContainerProps) => {
       setDiamonds(diamonds - 50)
       setCount(count * 2)
     }
-  });
+  }, diamonds);
   const tabTwo = () => Shop(count, addOne, addOneBot, addAmount, botAmount, addOneBotLevel, botLevel, props.colorScheme, diamonds);
   const tabThree = () => Info()
   const tabFour = () => Credits(props.colorScheme)
@@ -177,13 +199,13 @@ const StateContainer = (props: StateContainerProps) => {
 
 
   return (
-//https://ionicframework.com/docs/v3/ionicons/
+    //https://ionicframework.com/docs/v3/ionicons/
     <>
       <Tab.Navigator>
-        <Tab.Screen name="Info" component={tabThree} options={{tabBarIcon: ({ color }) => <TabBarIcon name="ios-information-circle-outline" color={color} />,}} />
-        <Tab.Screen name="Crisps" component={tabOne} options={{tabBarIcon: ({ color }) => <TabBarIcon name="ios-cash" color={color} />,}}/>
-        <Tab.Screen name="Shop" component={tabTwo} options={{tabBarIcon: ({ color }) => <TabBarIcon name="ios-basket" color={color} />,}}/>
-        <Tab.Screen name="Credits" component={tabFour} options={{tabBarIcon: ({ color }) => <TabBarIcon name="ios-man" color={color} />,}}/>
+        <Tab.Screen name="Info" component={tabThree} options={{ tabBarIcon: ({ color }) => <TabBarIcon name="ios-information-circle-outline" color={color} />, }} />
+        <Tab.Screen name="Crisps" component={tabOne} options={{ tabBarIcon: ({ color }) => <TabBarIcon name="ios-cash" color={color} />, }} />
+        <Tab.Screen name="Shop" component={tabTwo} options={{ tabBarIcon: ({ color }) => <TabBarIcon name="ios-basket" color={color} />, }} />
+        <Tab.Screen name="Credits" component={tabFour} options={{ tabBarIcon: ({ color }) => <TabBarIcon name="ios-man" color={color} />, }} />
       </Tab.Navigator>
     </>
   )
