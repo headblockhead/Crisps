@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import { Audio, AVPlaybackStatusToSet } from 'expo-av';
@@ -77,23 +78,17 @@ const StateContainer = (props: StateContainerProps) => {
     const isBotActive = botLevel >= (lastDigit + 1);
     if (isBotActive) {
       setCount(count => count + botAmount);
-      const multipleOf1000 = (x: number): boolean => x % 1000 == 0;
-      for (let i = botAmount; i >= -1; i--) {
-        if (multipleOf1000(beforeAdd + i)) {
-          setDiamonds(diamonds + 1)
-        }
-      }
     }
   }, [seconds]);
   useEffect(() => {
-    if(!isLoaded) { return }
+    if (!isLoaded) { return }
     const munch = new Audio.Sound();
     const munchSound = munchsounds[Math.floor(Math.random() * (16 - 0) + 0)]
     munch.loadAsync(munchSound, { shouldPlay: true } as AVPlaybackStatusToSet);
     setTimeout(() => munch.unloadAsync(), 5000);
   }, [count]);
   useEffect(() => {
-    if(!isLoaded) { return }
+    if (!isLoaded) { return }
     const cha = new Audio.Sound();
     const chaSound = registerSounds[Math.floor(Math.random() * (2 - 0) + 0)]
     cha.loadAsync(chaSound, { shouldPlay: true } as AVPlaybackStatusToSet);
@@ -176,13 +171,19 @@ const StateContainer = (props: StateContainerProps) => {
     loadStateFromStorage();
   }, []);
 
+  function TabBarIcon(props: { name: string; color: string }) {
+    return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
+  }
+
+
   return (
+//https://ionicframework.com/docs/v3/ionicons/
     <>
       <Tab.Navigator>
-        <Tab.Screen name="Info" component={tabThree} />
-        <Tab.Screen name="Crisps" component={tabOne} />
-        <Tab.Screen name="Shop" component={tabTwo} />
-        <Tab.Screen name="Credits" component={tabFour} />
+        <Tab.Screen name="Info" component={tabThree} options={{tabBarIcon: ({ color }) => <TabBarIcon name="ios-information-circle-outline" color={color} />,}} />
+        <Tab.Screen name="Crisps" component={tabOne} options={{tabBarIcon: ({ color }) => <TabBarIcon name="ios-cash" color={color} />,}}/>
+        <Tab.Screen name="Shop" component={tabTwo} options={{tabBarIcon: ({ color }) => <TabBarIcon name="ios-basket" color={color} />,}}/>
+        <Tab.Screen name="Credits" component={tabFour} options={{tabBarIcon: ({ color }) => <TabBarIcon name="ios-man" color={color} />,}}/>
       </Tab.Navigator>
     </>
   )

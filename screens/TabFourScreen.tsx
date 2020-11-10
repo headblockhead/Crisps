@@ -20,14 +20,25 @@ export const Credits = (colorScheme: string) => (
         <View style={styles.container}>
             <Text style={styles.title}>Credits:</Text>
             <View style={styles.invisisep} lightColor="rgba(255,255,255,0)" darkColor="rgba(255,255,255,0)" />
-            <Text style={styles.parabig}>Here are the credits for the authors of some sounds used in the game and the developer behind the game.</Text>
+            <Text style={styles.parabig}>Here are the credits for the authors of some</Text>
+            <Text style={styles.parabig}> sounds used in the game and the</Text>
+            <Text style={styles.parabig}>developers behind the game.</Text>
             <Text></Text>
             <Text style={styles.title}>Sounds:</Text>
             <Text></Text>
-            <Text style={styles.para}>The sound made when purchasing an upgrade or enhancement was made by Muska666. Source url: http://soundbible.com/1997-Cha-Ching-Register.html</Text> 
+            <Text style={styles.para}>The sound made when purchasing an upgrade </Text>
+           <Text style={styles.para}> or enhancement was made by Muska666. </Text>
+           <Text style={styles.para}> Source url: </Text>
+           <View style={styles.invisisep} lightColor="rgba(255,255,255,0)" darkColor="rgba(255,255,255,0)" />
+           <Text style={styles.parasmall}>http://soundbible.com/1997-Cha-Ching-Register.html</Text>
+            <Text></Text>
+            <Text style={styles.para}>The sound made when getting a crisp</Text>
+           <Text style={styles.para}>was made by Headblockhead. </Text>
+           <Text style={styles.para}>(By literally eating crisps)</Text>
             <Text></Text>
             <Text style={styles.title}>Licence:</Text>
-            <Text style={styles.para}>https://creativecommons.org/licenses/by/3.0/legalcode</Text>
+            <View style={styles.invisisep} lightColor="rgba(255,255,255,0)" darkColor="rgba(255,255,255,0)" />
+            <Text style={styles.parasmall}>https://creativecommons.org/licenses/by/3.0/legalcode</Text>
             <View style={styles.separatorsmallerr} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
         </View>
     </ScrollView>
@@ -36,6 +47,10 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 18,
         color: 'black',
+    },
+    parasmall: {
+        fontSize: 11.5,
+
     },
     separatorsmall: {
 

@@ -8,7 +8,7 @@ export const Info = () => (
 
             <View style={styles.smallinvisisep} lightColor="rgba(255,255,255,0)" darkColor="rgba(255,255,255,0)" />
             <Text style={styles.minititle}>This game is all about collecting,</Text>
-      <Text style={styles.minititle}>and selling, circuit boards!</Text>
+      <Text style={styles.minititle}>and selling, CRISPS!</Text>
       <View style={styles.invisisep} lightColor="rgba(255,255,255,0)" darkColor="rgba(255,255,255,0)" />
             <Text style={styles.title}>Tutorial:</Text>
             <View style={styles.invisisep} lightColor="rgba(255,255,255,0)" darkColor="rgba(255,255,255,0)" />
