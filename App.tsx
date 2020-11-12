@@ -106,11 +106,13 @@ const StateContainer = (props: StateContainerProps) => {
     }
   }, [seconds]);
   useEffect(() => {
+    if (!started) { return }
     const munch = new Audio.Sound();
     const munchSound = munchsounds[Math.floor(Math.random() * (16 - 0) + 0)]
     munch.loadAsync(munchSound, { shouldPlay: true } as AVPlaybackStatusToSet);
   }, [count]);
   useEffect(() => {
+    if (!started) { return }
     const cha = new Audio.Sound();
     const chaSound = registerSounds[Math.floor(Math.random() * (2 - 0) + 0)]
     cha.loadAsync(chaSound, { shouldPlay: true } as AVPlaybackStatusToSet);
