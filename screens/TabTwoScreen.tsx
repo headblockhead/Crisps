@@ -11,7 +11,7 @@ const getButtonColors = (scheme: string): Array<string> => {
 }
 
 const getButtonColor = (colorScheme: string, price: number, count: number) => {
-  const canAfford = price < count;
+  const canAfford = price <= count;
   const colors = getButtonColors(colorScheme);
   return canAfford ? colors[1] : colors[0];
 }

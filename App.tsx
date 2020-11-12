@@ -92,25 +92,18 @@ const isDivisible = (x: number, by: number) => (x % by) === 0;
       setCount(count => count + botAmount);
       var num;
       for (num = count - botAmount; num <= count;num++) {
-        if (isMultipleOf(num,20)) {
+        if (isMultipleOf(num,1000)) {
           setDiamonds(diamonds + 1)
         }
       }
     }
   }, [seconds]);
   useEffect(() => {
-    if (!isLoaded) { return }
     const munch = new Audio.Sound();
     const munchSound = munchsounds[Math.floor(Math.random() * (16 - 0) + 0)]
     munch.loadAsync(munchSound, { shouldPlay: true } as AVPlaybackStatusToSet);
-    setTimeout(() => munch.unloadAsync(), 5000);
-    if (isMultipleOf(count,20)) {
-      setDiamonds(diamonds + 1)
-    }
-
   }, [count]);
   useEffect(() => {
-    if (!isLoaded) { return }
     const cha = new Audio.Sound();
     const chaSound = registerSounds[Math.floor(Math.random() * (2 - 0) + 0)]
     cha.loadAsync(chaSound, { shouldPlay: true } as AVPlaybackStatusToSet);
@@ -126,17 +119,17 @@ const isDivisible = (x: number, by: number) => (x % by) === 0;
     }
   };
   const addOneBot = () => {
-    if (count >= 1) {
-      setCount(count - 1)
+    if (count >= 1000) {
+      setCount(count - 1000)
       setBotAmount(botAmount + 1)
     } else {
       Alert.alert("Too Expensive!")
     }
   }
   const addOneBotLevel = () => {
-    if (count >= 1) {
+    if (count >= 10000) {
       if (botLevel < 10) {
-        setCount(count - 1)
+        setCount(count - 10000)
         setBotLevel(botLevel + 1)
       } else {
         Alert.alert("Bots are already at the highest level!")
@@ -148,8 +141,8 @@ const isDivisible = (x: number, by: number) => (x % by) === 0;
   const tabOne = () => PressScr(count, () => {
     setCount(count + addAmount);
   }, addAmount, props.colorScheme, () => {
-    if (diamonds > 50) {
-      setDiamonds(diamonds - 50)
+    if (diamonds >= 50) {
+      setDiamonds(diamonds - 1)
       setCount(count * 2)
     }
   }, diamonds);

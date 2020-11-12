@@ -8,8 +8,8 @@ export const PressScr = (count: number, onClick: () => void, addAmount: number, 
     <View style={styles.container} >
       <Text style={styles.title}>Crisp Cruncher!</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <Text style={styles.big}>🍪   {count}   🍪</Text>
-      <Text style={styles.big}>💎   {diamond}   💎</Text>
+      <Text style={styles.big}>{count >= 10000 ? "" : "🍪    "}{count}{count >= 10000 ? "" : "    🍪"}</Text>
+      <Text style={styles.big}>{diamond >= 10000 ? "" : "💎    "}{diamond}{diamond >= 10000 ? "" : "    💎"}</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <TouchableHighlight style={styles.buttonsurround} onPress={onClick}>
         <Image
