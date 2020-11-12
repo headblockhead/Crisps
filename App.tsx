@@ -21,6 +21,8 @@ interface StateContainerProps {
   colorScheme: string,
 }
 
+var started = false
+
 const munchsounds = new Array(17);
 munchsounds[0] = require(`./assets/audio/munch/munch1.wav`);
 munchsounds[1] = require(`./assets/audio/munch/munch2.wav`);
@@ -65,7 +67,7 @@ const StateContainer = (props: StateContainerProps) => {
   const [botLevel, setBotLevel] = useState(1);
   const [diamonds, setDiamonds] = useState(0);
 
-const isDivisible = (x: number, by: number) => (x % by) === 0;
+  const isDivisible = (x: number, by: number) => (x % by) === 0;
 
   function isMultipleOf(a: number, multiple: number) {
     var divRemainder = a % multiple
@@ -91,11 +93,16 @@ const isDivisible = (x: number, by: number) => (x % by) === 0;
       var beforeAdd = count
       setCount(count => count + botAmount);
       var num;
-      for (num = count - botAmount; num <= count;num++) {
-        if (isMultipleOf(num,1000)) {
+      for (num = count - botAmount; num <= count; num++) {
+        if (isMultipleOf(num, 1000)) {
           setDiamonds(diamonds + 1)
         }
       }
+    }
+  }, [seconds]);
+  useEffect(() => {
+    if (!started) {
+      setTimeout(() => {  started = true; }, 2000);
     }
   }, [seconds]);
   useEffect(() => {
@@ -167,7 +174,7 @@ const isDivisible = (x: number, by: number) => (x % by) === 0;
   };
   useEffect(() => {
     async function setState() {
-      if (isLoaded) {
+      if (started) {
         console.log("Setting state.")
         const state: State = {
           count,

@@ -27,12 +27,12 @@ export const Info = () => (
 
             <Text style={styles.title}>Crisps :</Text>
             <View style={styles.invisisep} lightColor="rgba(255,255,255,0)" darkColor="rgba(255,255,255,0)" />
-            <Text style={styles.para}>Press the Button at the bottom of the screen</Text>
-            <Text style={styles.para}> (On the 'Crisps' tab) to make Crisps!</Text>
+            <Text style={styles.para}>Press the Button labeled 'Crisps' </Text>
+            <Text style={styles.para}> (On the 'Crisps' tab) to make some crisps!</Text>
             <View style={styles.separatorsmallerr} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
             <Text style={styles.title} >Diamonds:</Text>
             <View style={styles.invisisep} lightColor="rgba(255,255,255,0)" darkColor="rgba(255,255,255,0)" />
-            <Text style={styles.para}>You get a few diamonds every 1,000 Crisps </Text>
+            <Text style={styles.para}>You get a few diamonds every 1,000 crisps </Text>
             <Text style={styles.para}>made and can spend it on other perks</Text>
             <Text style={styles.parasmall}> (like doubling your current balance of crisps)</Text>
         </View>
