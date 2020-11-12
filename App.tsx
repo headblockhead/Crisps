@@ -153,6 +153,8 @@ const StateContainer = (props: StateContainerProps) => {
     if (diamonds >= 50) {
       setDiamonds(diamonds - 1)
       setCount(count * 2)
+    }else {
+      Alert.alert("Too Expensive!")
     }
   }, diamonds);
   const tabTwo = () => Shop(count, addOne, addOneBot, addAmount, botAmount, addOneBotLevel, botLevel, props.colorScheme, diamonds);
