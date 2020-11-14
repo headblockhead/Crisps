@@ -34,8 +34,8 @@ export const Shop = (count: number, addOne: () => void, addOneBot: () => void, p
       <View style={styles.separatorsmall} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <Text style={styles.title3}>Buy:</Text>
       <Button color={getButtonColor(colorScheme, 100, count)} title="Add one Point/Click (100 point cost)" onPress={addOne} />
-      <Button color={getButtonColor(colorScheme, 1000, count)} title="Add one Bot (1000 point cost)" onPress={addOneBot} />
-      <Button color={getButtonColor(colorScheme, 10000, count)} title="Upgrade all bots (past and future) by 1 level (10000 point cost)" onPress={addOneBotLevel} />
+      <Button color={getButtonColor(colorScheme, 1000, count)} title="Add a Machine (1000 point cost)" onPress={addOneBot} />
+      <Button color={getButtonColor(colorScheme, 10000, count)} title="Upgrade all Machines (past and future) by 1 level (10000 point cost)" onPress={addOneBotLevel} />
     </View>
   </ScrollView>
 );

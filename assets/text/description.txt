@@ -1,1 +1,9 @@
 Description for app: (NOTE: This will not change the actual description, this is only a place to store ideas. This will not effect compilation.)
+
+Crisps!
+
+A free-to-play game with NO ads, NO in-app purchases and NONE of any sort of trickery you might find in other games.
+
+In this game, the only goal is to have the MOST Crisps at one point. Every time you press the big button labeled "CRISPS!" you get 1 or more crisps.
+To aid you in your quest, you can hire robots to make crisps for you so you don't have to do the hard work of pressing the button.
+
