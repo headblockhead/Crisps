@@ -15,6 +15,12 @@ import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 
+var bottomNavigatorConfigs = {
+  tabBarOptions: {
+      style:{height:300}
+  }, 
+};
+
 const Tab = createBottomTabNavigator();
 
 interface StateContainerProps {
@@ -206,7 +212,7 @@ const StateContainer = (props: StateContainerProps) => {
     //https://ionicframework.com/docs/v3/ionicons/
     <>
       <Tab.Navigator>
-        <Tab.Screen name="Info" component={tabThree} options={{ tabBarIcon: ({ color }) => <TabBarIcon name="ios-information-circle-outline" color={color} />, }} />
+        <Tab.Screen name="Info" component={tabThree} options={{ tabBarIcon: ({ color }) => <TabBarIcon name="ios-information-circle-outline" color={color} />, }}/>
         <Tab.Screen name="Crisps" component={tabOne} options={{ tabBarIcon: ({ color }) => <TabBarIcon name="ios-cash" color={color} />, }} />
         <Tab.Screen name="Shop" component={tabTwo} options={{ tabBarIcon: ({ color }) => <TabBarIcon name="ios-basket" color={color} />, }} />
         <Tab.Screen name="Credits" component={tabFour} options={{ tabBarIcon: ({ color }) => <TabBarIcon name="ios-man" color={color} />, }} />
@@ -240,5 +246,6 @@ const styles = StyleSheet.create({
   bg: {
     width: '100%',
     height: '100%',
-  }
+  },
+
 })

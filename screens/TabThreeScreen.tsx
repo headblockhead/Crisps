@@ -1,6 +1,9 @@
 import * as React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { Dimensions, ScrollView, StyleSheet } from 'react-native';
 import { Text, View } from '../components/Themed';
+
+var h = Dimensions.get('screen').height;
+var w = Dimensions.get('screen').width;
 
 export const Info = () => (
     <ScrollView style={styles.scrollView}>
@@ -41,12 +44,12 @@ export const Info = () => (
 )
 const styles = StyleSheet.create({
     separatorsmall: {
-        marginVertical: 18,
+        marginVertical: w / 24,
         height: 1,
         width: '80%',
     },
     invisisep: {
-        marginVertical: 8,
+        marginVertical: w / 34,
         height: 1,
         width: '80%',
     },
@@ -73,23 +76,23 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     scrollView: {
-        marginVertical: 10.5,
+        marginVertical: 12.5,
         backgroundColor: 'transparent',
     },
     para: {
-        fontSize: 13.5,
+        fontSize: w / 24,
 
     },
     parabig: {
-        fontSize: 14.5,
+        fontSize: w / 24,
 
     },
     parasmall: {
-        fontSize: 12.5,
+        fontSize: w / 24.9,
 
     },
     title: {
-        fontSize: 30,
+        fontSize: w / 14,
         fontWeight: 'bold',
     },
     big: {
@@ -101,7 +104,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     minititle: {
-        fontSize: 15,
+        fontSize: w / 21,
         fontWeight: 'bold',
     },
     separator: {

@@ -1,7 +1,11 @@
 import * as React from 'react';
-import { ScrollView, StyleSheet, Image } from 'react-native';
+import { ScrollView, StyleSheet, Image, Dimensions } from 'react-native';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 import { Text, View } from '../components/Themed';
+
+
+var h = Dimensions.get('screen').height;
+var w = Dimensions.get('screen').width;
 
 export const PressScr = (count: number, onClick: () => void, addAmount: number, colorScheme: string, Double: () => void, diamond: number) => (
   <ScrollView style={styles.scrollView}>
@@ -28,14 +32,16 @@ export const PressScr = (count: number, onClick: () => void, addAmount: number, 
   </ScrollView>
 );
 
+
+
 const styles = StyleSheet.create({
   tinyLogo: {
     width: 399,
     height: 100,
   },
   buttonsurround: {
-    width: 310,
-    height: 80,
+    width: (w / 4 * 3.87),
+    height: (w / 9 * 2.3),
     resizeMode: 'stretch',
   },
   container: {
@@ -55,11 +61,11 @@ const styles = StyleSheet.create({
 
   },
   title: {
-    fontSize: 30,
+    fontSize: w / 9,
     fontWeight: 'bold',
   },
   big: {
-    fontSize: 50,
+    fontSize: w / 7,
     fontWeight: 'bold',
   },
   subtitle1: {
@@ -67,7 +73,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   separator: {
-    marginVertical: 30,
+    marginVertical: h / 20,
     height: 1,
     width: '80%',
   },
