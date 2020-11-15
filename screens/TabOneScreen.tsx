@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ScrollView, StyleSheet, Image, Dimensions } from 'react-native';
-import { TouchableHighlight } from 'react-native-gesture-handler';
+import { TouchableHighlight, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { Text, View } from '../components/Themed';
 
 
@@ -12,15 +12,15 @@ export const PressScr = (count: number, onClick: () => void, addAmount: number, 
     <View style={styles.container} >
       <Text style={styles.title}>Crisp Cruncher!</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <Text style={styles.big}>{count >= 10000 ? "" : "🍪    "}{count}{count >= 10000 ? "" : "    🍪"}</Text>
+      <Text style={styles.big}>{count >= 10000 ? "" : "🥨    "}{count}{count >= 10000 ? "" : "    🥨"}</Text>
       <Text style={styles.big}>{diamond >= 10000 ? "" : "💎    "}{diamond}{diamond >= 10000 ? "" : "    💎"}</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <TouchableHighlight style={styles.buttonsurround} onPress={onClick}>
+      <TouchableWithoutFeedback style={styles.buttonsurround} onPress={onClick}>
         <Image
           style={styles.buttonsurround}
           source={colorScheme === "dark" ? require('../assets/images/button2.png') : require('../assets/images/button.png')}
         />
-      </TouchableHighlight>
+      </TouchableWithoutFeedback>
       <View style={styles.separatorsmallerr} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <TouchableHighlight style={styles.buttonsurround} onPress={Double}>
         <Image
