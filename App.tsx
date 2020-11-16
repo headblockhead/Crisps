@@ -15,12 +15,6 @@ import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 
-var bottomNavigatorConfigs = {
-  tabBarOptions: {
-      style:{height:300}
-  }, 
-};
-
 const Tab = createBottomTabNavigator();
 
 interface StateContainerProps {
@@ -53,9 +47,6 @@ registerSounds[0] = require(`./assets/audio/cha/cha.wav`);
 registerSounds[1] = require(`./assets/audio/cha/cha2.wav`);
 registerSounds[2] = require(`./assets/audio/cha/cha3.wav`);
 
-
-// sounds[Math.floor(Math.random() * (18 - 1) + 1)]
-
 interface State {
   count: number
   addAmount: number
@@ -65,15 +56,12 @@ interface State {
 }
 
 const StateContainer = (props: StateContainerProps) => {
-  const [isLoaded, setIsLoaded] = useState(false);
   const [seconds, setSeconds] = useState(0);
   const [count, setCount] = useState(0);
   const [addAmount, setAddAmount] = useState(1);
   const [botAmount, setBotAmount] = useState(0);
   const [botLevel, setBotLevel] = useState(1);
   const [diamonds, setDiamonds] = useState(0);
-
-  const isDivisible = (x: number, by: number) => (x % by) === 0;
 
   function isMultipleOf(a: number, multiple: number) {
     var divRemainder = a % multiple
@@ -90,13 +78,11 @@ const StateContainer = (props: StateContainerProps) => {
     return () => clearInterval(interval);
   });
   useEffect(() => {
-
     var toText = seconds.toString(); //convert to string
     var lastChar = toText.slice(-1); //gets last character
     var lastDigit = +(lastChar); //convert last character to number
     const isBotActive = botLevel >= (lastDigit + 1) && botAmount != 0;
     if (isBotActive) {
-      var beforeAdd = count
       setCount(count => count + botAmount);
       var num;
       for (num = count - botAmount; num <= count; num++) {
@@ -116,13 +102,14 @@ const StateContainer = (props: StateContainerProps) => {
     const munch = new Audio.Sound();
     const munchSound = munchsounds[Math.floor(Math.random() * (16 - 0) + 0)]
     munch.loadAsync(munchSound, { shouldPlay: true } as AVPlaybackStatusToSet);
+    setTimeout(() => munch.unloadAsync(), 750);
   }, [count]);
   useEffect(() => {
     if (!started) { return }
     const cha = new Audio.Sound();
     const chaSound = registerSounds[Math.floor(Math.random() * (2 - 0) + 0)]
     cha.loadAsync(chaSound, { shouldPlay: true } as AVPlaybackStatusToSet);
-    setTimeout(() => cha.unloadAsync(), 5000);
+    setTimeout(() => cha.unloadAsync(), 2000);
   }, [botAmount, addAmount, botLevel]);
 
   const addOne = () => {
@@ -180,7 +167,6 @@ const StateContainer = (props: StateContainerProps) => {
     setBotAmount(item.botAmount);
     setBotLevel(item.botLevel);
     setDiamonds(item.diamonds);
-    setIsLoaded(true);
   };
   useEffect(() => {
     async function setState() {
@@ -206,7 +192,6 @@ const StateContainer = (props: StateContainerProps) => {
   function TabBarIcon(props: { name: string; color: string }) {
     return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
   }
-
 
   return (
     //https://ionicframework.com/docs/v3/ionicons/
@@ -247,5 +232,4 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-
 })
