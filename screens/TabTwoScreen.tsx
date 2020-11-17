@@ -19,6 +19,14 @@ const getButtonColor = (colorScheme: string, price: number, count: number) => {
   return canAfford ? colors[1] : colors[0];
 }
 
+const getButtonColorbots = (colorScheme: string, price: number, count: number, botlevl:number) => {
+  const canAfford = price <= count;
+  const notismax = botlevl < 10
+  const both = canAfford == true && notismax == true
+  const colors = getButtonColors(colorScheme);
+  return both ? colors[1] : colors[0];
+}
+
 export const Shop = (count: number, addOne: () => void, addOneBot: () => void, pointsPerClick: number, botCount: number, addOneBotLevel: () => void, botLevel: number, colorScheme: string, diamonds: number) => (
   <ScrollView style={styles.scrollView}>
     <View style={styles.container}>

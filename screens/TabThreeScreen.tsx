@@ -37,7 +37,8 @@ export const Info = () => (
             <Text style={styles.title} >Diamonds</Text>
             <View style={styles.invisisep} lightColor="rgba(255,255,255,0)" darkColor="rgba(255,255,255,0)" />
             <Text style={styles.para}>You get a few diamonds every 1,000 crisps </Text>
-            <Text style={styles.para}>made and can spend it on other perks</Text>
+            <Text style={styles.para}>made by robots and can spend it on </Text>
+            <Text style={styles.para}>other perks</Text>
             <Text style={styles.parasmall}> (like doubling your current balance of crisps)</Text>
         </View>
     </ScrollView>

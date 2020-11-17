@@ -94,7 +94,7 @@ const StateContainer = (props: StateContainerProps) => {
   }, [seconds]);
   useEffect(() => {
     if (!started) {
-      setTimeout(() => {  started = true; }, 2000);
+      setTimeout(() => { started = true; }, 2000);
     }
   }, [seconds]);
   useEffect(() => {
@@ -144,9 +144,13 @@ const StateContainer = (props: StateContainerProps) => {
     setCount(count + addAmount);
   }, addAmount, props.colorScheme, () => {
     if (diamonds >= 50) {
-      setDiamonds(diamonds - 1)
+      setDiamonds(diamonds - 50)
       setCount(count * 2)
-    }else {
+      const cha = new Audio.Sound();
+      const chaSound = registerSounds[Math.floor(Math.random() * (2 - 0) + 0)]
+      cha.loadAsync(chaSound, { shouldPlay: true } as AVPlaybackStatusToSet);
+      setTimeout(() => cha.unloadAsync(), 2000);
+    } else {
       Alert.alert("Too Expensive!")
     }
   }, diamonds);
@@ -197,7 +201,7 @@ const StateContainer = (props: StateContainerProps) => {
     //https://ionicframework.com/docs/v3/ionicons/
     <>
       <Tab.Navigator>
-        <Tab.Screen name="Info" component={tabThree} options={{ tabBarIcon: ({ color }) => <TabBarIcon name="ios-information-circle-outline" color={color} />, }}/>
+        <Tab.Screen name="Info" component={tabThree} options={{ tabBarIcon: ({ color }) => <TabBarIcon name="ios-information-circle-outline" color={color} />, }} />
         <Tab.Screen name="Crisps" component={tabOne} options={{ tabBarIcon: ({ color }) => <TabBarIcon name="ios-cash" color={color} />, }} />
         <Tab.Screen name="Shop" component={tabTwo} options={{ tabBarIcon: ({ color }) => <TabBarIcon name="ios-basket" color={color} />, }} />
         <Tab.Screen name="Credits" component={tabFour} options={{ tabBarIcon: ({ color }) => <TabBarIcon name="ios-man" color={color} />, }} />

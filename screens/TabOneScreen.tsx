@@ -12,8 +12,8 @@ export const PressScr = (count: number, onClick: () => void, addAmount: number, 
     <View style={styles.container} >
       <Text style={styles.title}>Crisp Cruncher!</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <Text style={styles.big}>{count >= 10000 ? "" : "🥨    "}{count}{count >= 10000 ? "" : "    🥨"}</Text>
-      <Text style={styles.big}>{diamond >= 10000 ? "" : "💎    "}{diamond}{diamond >= 10000 ? "" : "    💎"}</Text>
+      <Text style={styles.big}>{count >= 1000 ? "" : "🥨    "}{count}{count >= 1000 ? "" : "    🥨"}</Text>
+      <Text style={styles.big}>{diamond >= 1000 ? "" : "💎    "}{diamond}{diamond >= 1000 ? "" : "    💎"}</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <TouchableWithoutFeedback style={styles.buttonsurround} onPress={onClick}>
         <Image
@@ -22,12 +22,12 @@ export const PressScr = (count: number, onClick: () => void, addAmount: number, 
         />
       </TouchableWithoutFeedback>
       <View style={styles.separatorsmallerr} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <TouchableHighlight style={styles.buttonsurround} onPress={Double}>
+      <TouchableWithoutFeedback style={styles.buttonsurround} onPress={Double}>
         <Image
           style={styles.buttonsurround}
           source={colorScheme === "dark" ? require('../assets/images/buttonpaydouble2.png') : require('../assets/images/buttonpaydouble.png')}
         />
-      </TouchableHighlight>
+      </TouchableWithoutFeedback>
     </View>
   </ScrollView>
 );
