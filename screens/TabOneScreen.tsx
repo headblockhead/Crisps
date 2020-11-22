@@ -1,8 +1,20 @@
 import * as React from 'react';
-import { ScrollView, StyleSheet, Image, Dimensions } from 'react-native';
+import { ScrollView, StyleSheet, Image, Dimensions, Button, Alert } from 'react-native';
 import { TouchableHighlight, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { Text, View } from '../components/Themed';
 
+const getStyle = (count: number) => {
+  if (count < 1) {
+    return styles.big
+  }
+  if (count > 2 && count < 3) {
+    return styles.big1
+  }
+  if (count > 4) {
+    return styles.big2
+  }
+  return styles.big
+}
 
 var h = Dimensions.get('screen').height;
 var w = Dimensions.get('screen').width;
@@ -12,8 +24,8 @@ export const PressScr = (count: number, onClick: () => void, addAmount: number, 
     <View style={styles.container} >
       <Text style={styles.title}>Crisp Cruncher!</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <Text style={styles.big}>{count >= 1000 ? "" : "🥨    "}{count}{count >= 1000 ? "" : "    🥨"}</Text>
-      <Text style={styles.big}>{diamond >= 1000 ? "" : "💎    "}{diamond}{diamond >= 1000 ? "" : "    💎"}</Text>
+      <Text style={getStyle(count)}>{count >= 1000 ? "" : "🥨    "}{count}{count >= 1000 ? "" : "    🥨"}</Text>
+      <Text style={getStyle(diamond)}>{diamond >= 1000 ? "" : "💎    "}{diamond}{diamond >= 1000 ? "" : "    💎"}</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <TouchableWithoutFeedback style={styles.buttonsurround} onPress={onClick}>
         <Image
@@ -66,6 +78,14 @@ const styles = StyleSheet.create({
   },
   big: {
     fontSize: w / 7,
+    fontWeight: 'bold',
+  },
+  big1: {
+    fontSize: w / 8.3,
+    fontWeight: 'bold',
+  },
+  big2: {
+    fontSize: w / 9,
     fontWeight: 'bold',
   },
   subtitle1: {
