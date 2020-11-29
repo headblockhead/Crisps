@@ -78,11 +78,10 @@ const StateContainer = (props: StateContainerProps) => {
     const isBotActive = botLevel >= (lastDigit + 1) && botAmount != 0;
     if (isBotActive) {
       setCount(count => count + botAmount);
-      for (let num = count - botAmount; num <= count; num++) {
-        if (isMultipleOf(num, 1000)) {
-          setDiamonds(diamonds + 1)
-        }
-      }
+      const oldDiamonds = diamonds;
+      const newDiamonds = Math.floor((count + botAmount) / 1000);
+      const diamondsToAdd = newDiamonds - oldDiamonds;
+      setDiamonds(diamonds => diamonds + diamondsToAdd);
     }
   }, [seconds]);
   useEffect(() => {
@@ -107,16 +106,16 @@ const StateContainer = (props: StateContainerProps) => {
 
   const addOne = () => {
     if (count >= 100) {
-      setCount(count - 100)
-      setAddAmount(addAmount + 1)
+      setCount(count => count - 100);
+      setAddAmount(addAmount => addAmount + 1);
     } else {
       Alert.alert("Too Expensive!")
     }
   };
   const addOneBot = () => {
     if (count >= 1000) {
-      setCount(count - 1000)
-      setBotAmount(botAmount + 1)
+      setCount(count => count - 1000);
+      setBotAmount(botAmount => botAmount + 1);
     } else {
       Alert.alert("Too Expensive!")
     }
@@ -124,8 +123,8 @@ const StateContainer = (props: StateContainerProps) => {
   const addOneBotLevel = () => {
     if (count >= 10000) {
       if (botLevel < 10) {
-        setCount(count - 10000)
-        setBotLevel(botLevel + 1)
+        setCount(count => count - 10000)
+        setBotLevel(botLevel => botLevel + 1)
       } else {
         Alert.alert("Bots are already at the highest level!")
       }
@@ -134,13 +133,13 @@ const StateContainer = (props: StateContainerProps) => {
     }
   };
   const tabOne = () => PressScr(count, () => {
-    setCount(count + addAmount);
+    setCount(count => count + addAmount);
   }, addAmount, props.colorScheme, () => {
     if (diamonds >= 50) {
-      setDiamonds(diamonds - 50)
-      setCount(count * 2)
+      setDiamonds(diamonds => diamonds - 50);
+      setCount(count => count * 2);
       const cha = new Audio.Sound();
-      const chaSound = registerSounds[Math.floor(Math.random() * (2 - 0) + 0)]
+      const chaSound = registerSounds[Math.floor(Math.random() * (2 - 0) + 0)];
       cha.loadAsync(chaSound, { shouldPlay: true } as AVPlaybackStatusToSet);
       setTimeout(() => cha.unloadAsync(), 2000);
     } else {
@@ -165,24 +164,22 @@ const StateContainer = (props: StateContainerProps) => {
     setBotLevel(item.botLevel);
     setDiamonds(item.diamonds);
   };
+  async function setState() {
+    const state: State = {
+      count,
+      addAmount,
+      botAmount,
+      botLevel,
+      diamonds,
+    };
+    await setItem(JSON.stringify(state));
+  }
   useEffect(() => {
-    async function setState() {
-      if (started) {
-        console.log("Setting state.")
-        const state: State = {
-          count,
-          addAmount,
-          botAmount,
-          botLevel,
-          diamonds,
-        };
-        await setItem(JSON.stringify(state));
-      }
+    if (started) {
+      setState();
     }
-    setState();
   }, [count, addAmount, botAmount, botLevel, diamonds])
   useEffect(() => {
-    console.log("Loading state.")
     loadStateFromStorage();
   }, []);
 
