@@ -64,11 +64,7 @@ const StateContainer = (props: StateContainerProps) => {
   const [diamonds, setDiamonds] = useState(0);
 
   function isMultipleOf(a: number, multiple: number) {
-    var divRemainder = a % multiple
-    if (divRemainder != 0) {
-      return false
-    }
-    return true
+    return (a % multiple) == 0;
   }
 
   useEffect(() => {
@@ -78,14 +74,11 @@ const StateContainer = (props: StateContainerProps) => {
     return () => clearInterval(interval);
   });
   useEffect(() => {
-    var toText = seconds.toString(); //convert to string
-    var lastChar = toText.slice(-1); //gets last character
-    var lastDigit = +(lastChar); //convert last character to number
+    var lastDigit = seconds % 10;
     const isBotActive = botLevel >= (lastDigit + 1) && botAmount != 0;
     if (isBotActive) {
       setCount(count => count + botAmount);
-      var num;
-      for (num = count - botAmount; num <= count; num++) {
+      for (let num = count - botAmount; num <= count; num++) {
         if (isMultipleOf(num, 1000)) {
           setDiamonds(diamonds + 1)
         }
