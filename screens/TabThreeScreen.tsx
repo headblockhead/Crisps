@@ -23,8 +23,6 @@ export const Info = () => (
             <Text style={styles.para}>Use the shop to buy equipment and </Text>
             <Text style={styles.para}> speed up making your crisps.</Text>
             <Text></Text>
-            {/* <Text style={styles.para}>Save your crisps to climb</Text>
-            <Text style={styles.para}> the leaderboard and be number one!</Text> */}
             <Text style={styles.para}>Robots do the work for you.</Text>
             <Text style={styles.para}>Upgrade them to make them go faster!</Text>
             <View style={styles.separatorsmallerr} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
