@@ -1,19 +1,19 @@
 import * as React from 'react';
 import { ScrollView, StyleSheet, Image, Dimensions, Button, Alert } from 'react-native';
-import { TouchableHighlight, TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { Text, View } from '../components/Themed';
 
 const getStyle = (count: number) => {
-  if (count < 1) {
+  if (count < 1000) {
     return styles.big
   }
-  if (count > 2 && count < 3) {
+  if (count > 999 && count < 100000) {
     return styles.big1
   }
-  if (count > 4) {
+  if (count > 99999) {
     return styles.big2
   }
-  return styles.big
+  return styles.big3
 }
 
 var h = Dimensions.get('screen').height;
@@ -27,19 +27,19 @@ export const PressScr = (count: number, onClick: () => void, addAmount: number, 
       <Text style={getStyle(count)}>{count >= 1000 ? "" : "🥨    "}{count}{count >= 1000 ? "" : "    🥨"}</Text>
       <Text style={getStyle(diamond)}>{diamond >= 1000 ? "" : "💎    "}{diamond}{diamond >= 1000 ? "" : "    💎"}</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <TouchableWithoutFeedback style={styles.buttonsurround} onPress={onClick}>
+      <TouchableOpacity activeOpacity= {0.5} style={styles.buttonsurround} onPress={onClick}>
         <Image
           style={styles.buttonsurround}
           source={colorScheme === "dark" ? require('../assets/images/button2.png') : require('../assets/images/button.png')}
         />
-      </TouchableWithoutFeedback>
+      </TouchableOpacity>
       <View style={styles.separatorsmallerr} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <TouchableWithoutFeedback style={styles.buttonsurround} onPress={Double}>
+      <TouchableOpacity activeOpacity= {0.5} style={styles.buttonsurround} onPress={Double}>
         <Image
           style={styles.buttonsurround}
           source={colorScheme === "dark" ? require('../assets/images/buttonpaydouble2.png') : require('../assets/images/buttonpaydouble.png')}
         />
-      </TouchableWithoutFeedback>
+      </TouchableOpacity>
     </View>
   </ScrollView>
 );
@@ -81,11 +81,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   big1: {
-    fontSize: w / 8.3,
+    fontSize: w / 9,
     fontWeight: 'bold',
   },
   big2: {
-    fontSize: w / 9,
+    fontSize: w / 11,
+    fontWeight: 'bold',
+  },
+  big3: {
+    fontSize: w / 15,
     fontWeight: 'bold',
   },
   subtitle1: {

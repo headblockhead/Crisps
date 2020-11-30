@@ -148,7 +148,22 @@ const StateContainer = (props: StateContainerProps) => {
   }, diamonds);
   const tabTwo = () => Shop(count, addOne, addOneBot, addAmount, botAmount, addOneBotLevel, botLevel, props.colorScheme, diamonds);
   const tabThree = () => Info()
-  const tabFour = () => Credits(props.colorScheme)
+  const tabFour = () => Credits(() => {Alert.alert(
+    'Delete',
+    'Are you SURE you want to DELETE EVERYTHING? This includes the number of crisps made, the number of diamonds you have and everything you bought from the shop!',
+    [
+      {
+        text: 'Yes',
+        onPress: () => {setAddAmount(1);setBotAmount(0);setBotLevel(1);setCount(0);setDiamonds(0)}
+      },
+      {
+        text: 'No',
+        onPress: () => console.log('Canceled'),
+        style: 'cancel'
+      }
+    ],
+    { cancelable: false }
+  );})
 
   // Store the state.
   const { getItem, setItem } = useAsyncStorage('@clicker_state');

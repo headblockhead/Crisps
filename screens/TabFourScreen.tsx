@@ -1,6 +1,7 @@
 import { WebBrowser } from 'expo';
 import * as React from 'react';
 import { ScrollView, StyleSheet, Linking, useColorScheme, Button } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Text, View } from '../components/Themed';
 
 const getButtonColors = (scheme: string): string => {
@@ -16,7 +17,7 @@ const getButtonColor = (colorScheme: string) => {
 }
 
 
-export const Credits = (colorScheme: string) => (
+export const Credits = (reset: () => void) => (
     <ScrollView style={styles.scrollView}>
         <View style={styles.container}>
             <Text style={styles.title}>Credits</Text>
@@ -41,7 +42,10 @@ export const Credits = (colorScheme: string) => (
             <View style={styles.invisisep} lightColor="rgba(255,255,255,0)" darkColor="rgba(255,255,255,0)" />
             <Text style={styles.parasmall}>Cha-Ching Register:</Text>
             <Text style={styles.parasmall}>https://creativecommons.org/licenses/by/3.0/legalcode</Text>
-            
+            <View style={styles.separatorsmallerr} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+            <TouchableOpacity activeOpacity= {0.5} style={styles.EVIL} onPress={reset}>
+            <Text style={styles.BIGEVIL}>RESET ALL DATA</Text>
+            </TouchableOpacity>
         </View>
     </ScrollView >
 )
@@ -97,6 +101,18 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 30,
         fontWeight: 'bold',
+    },
+    BIGEVIL: {
+        fontSize: 40,
+        fontWeight: 'bold',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: 'red'
+    },
+    EVIL: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(100,0,0,0.5)'
     },
     big: {
         fontSize: 50,
