@@ -1,2 +1,2 @@
-npx expo start
+npx expo-cli start
 pause
