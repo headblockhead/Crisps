@@ -78,10 +78,11 @@ const StateContainer = (props: StateContainerProps) => {
     const isBotActive = botLevel >= (lastDigit + 1) && botAmount != 0;
     if (isBotActive) {
       setCount(count => count + botAmount);
-      const oldDiamonds = diamonds;
-      const newDiamonds = Math.floor((count + botAmount) / 1000);
-      const diamondsToAdd = newDiamonds - oldDiamonds;
-      setDiamonds(diamonds => diamonds + diamondsToAdd);
+      for (let num = count - botAmount; num <= count; num++) {
+        if (isMultipleOf(num, 1000)) {
+          setDiamonds(diamonds + 1)
+        }
+      }
     }
   }, [seconds]);
   useEffect(() => {
