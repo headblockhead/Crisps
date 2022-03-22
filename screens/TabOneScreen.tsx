@@ -24,8 +24,8 @@ export const PressScr = (count: number, onClick: () => void, addAmount: number, 
     <View style={styles.container} >
       <Text style={styles.title}>Crisp Cruncher!</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <Text style={getStyle(count)}>{count >= 1000 ? "" : "🥨    "}{count}{count >= 1000 ? "" : "    🥨"}</Text>
-      <Text style={getStyle(diamond)}>{diamond >= 1000 ? "" : "💎    "}{diamond}{diamond >= 1000 ? "" : "    💎"}</Text>
+      <Text style={getStyle(count)}>{count >= 100 ? "" : "🥨  "}{count}{count >= 100 ? "" : "  🥨"}</Text>
+      <Text style={getStyle(diamond)}>{diamond >= 100 ? "" : "💎    "}{diamond}{diamond >= 100 ? "" : "    💎"}</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <TouchableOpacity activeOpacity= {0.5} style={styles.buttonsurround} onPress={onClick}>
         <Image
@@ -52,8 +52,8 @@ const styles = StyleSheet.create({
     height: 100,
   },
   buttonsurround: {
-    width: (w / 12 * 3.87),
-    height: (w / 27 * 2.3),
+    width: (h / 8 * 3.87),
+    height: (h / 18 * 2.3),
     resizeMode: 'stretch',
   },
   container: {
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
 
   },
   title: {
-    fontSize: 90,
+    fontSize: 40,
     fontWeight: 'bold',
   },
   big: {
@@ -81,15 +81,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   big1: {
-    fontSize: 90,
+    fontSize: 80,
     fontWeight: 'bold',
   },
   big2: {
-    fontSize: 90,
+    fontSize: 70,
     fontWeight: 'bold',
   },
   big3: {
-    fontSize: 90,
+    fontSize: 60,
     fontWeight: 'bold',
   },
   subtitle1: {
