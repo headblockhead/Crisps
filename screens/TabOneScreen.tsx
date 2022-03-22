@@ -52,8 +52,8 @@ const styles = StyleSheet.create({
     height: 100,
   },
   buttonsurround: {
-    width: (w / 4 * 3.87),
-    height: (w / 9 * 2.3),
+    width: (w / 12 * 3.87),
+    height: (w / 27 * 2.3),
     resizeMode: 'stretch',
   },
   container: {
@@ -73,31 +73,31 @@ const styles = StyleSheet.create({
 
   },
   title: {
-    fontSize: w / 9,
+    fontSize: 90,
     fontWeight: 'bold',
   },
   big: {
-    fontSize: w / 7,
+    fontSize: 90,
     fontWeight: 'bold',
   },
   big1: {
-    fontSize: w / 9,
+    fontSize: 90,
     fontWeight: 'bold',
   },
   big2: {
-    fontSize: w / 11,
+    fontSize: 90,
     fontWeight: 'bold',
   },
   big3: {
-    fontSize: w / 15,
+    fontSize: 90,
     fontWeight: 'bold',
   },
   subtitle1: {
-    fontSize: 17,
+    fontSize: 90,
     fontWeight: 'bold',
   },
   separator: {
-    marginVertical: h / 20,
+    marginVertical: 20,
     height: 1,
     width: '80%',
   },

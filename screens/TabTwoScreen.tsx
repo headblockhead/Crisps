@@ -52,11 +52,6 @@ export const Shop = (count: number, addOne: () => void, addOneBot: () => void, p
 );
 
 const styles = StyleSheet.create({
-  separatorsmall: {
-      marginVertical: w / 24,
-      height: 1,
-      width: '80%',
-  },
   invisisep: {
       marginVertical: w / 34,
       height: 1,
@@ -67,31 +62,6 @@ const styles = StyleSheet.create({
       height: 1,
       width: '80%',
   },
-  tinyLogo: {
-      width: 399,
-      height: 100,
-  },
-  buttonsurround: {
-      width: 310,
-      height: 80,
-      resizeMode: 'stretch',
-  },
-  container: {
-      width: '100%',
-      height: '100%',
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: 'transparent',
-  },
-  scrollView: {
-      marginVertical: 12.5,
-      backgroundColor: 'transparent',
-  },
-  para: {
-      fontSize: w / 24,
-
-  },
   parabig: {
       fontSize: w / 24,
 
@@ -100,42 +70,84 @@ const styles = StyleSheet.create({
       fontSize: w / 24.9,
 
   },
-  title: {
-      fontSize: w / 14,
-      fontWeight: 'bold',
-  },
   title2: {
-    fontSize: w / 12,
+    fontSize:  12,
     fontWeight: 'bold',
 },
 title3: {
-  fontSize: w / 13,
+  fontSize:  13,
   fontWeight: 'bold',
 },
   medium: {
-    fontSize: w / 15,
+    fontSize:  15,
     fontWeight: 'bold',
 },
-  big: {
-      fontSize: 50,
+  minititle: {
+      fontSize: 21,
       fontWeight: 'bold',
+  },
+  tinyLogo: {
+    width: 399,
+    height: 100,
+  },
+  buttonsurround: {
+    width: (w / 12 * 3.87),
+    height: (w / 27 * 2.3),
+    resizeMode: 'stretch',
+  },
+  container: {
+    width: '100%',
+    height: '100%',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+  },
+  scrollView: {
+    marginVertical: 10.5,
+    backgroundColor: 'transparent',
+  },
+  para: {
+    fontSize: 13.5,
+
+  },
+  title: {
+    fontSize: 60,
+    fontWeight: 'bold',
+  },
+  big: {
+    fontSize: 90,
+    fontWeight: 'bold',
+  },
+  big1: {
+    fontSize: 90,
+    fontWeight: 'bold',
+  },
+  big2: {
+    fontSize: 90,
+    fontWeight: 'bold',
+  },
+  big3: {
+    fontSize: 90,
+    fontWeight: 'bold',
   },
   subtitle1: {
-      fontSize: 17,
-      fontWeight: 'bold',
-  },
-  minititle: {
-      fontSize: w / 21,
-      fontWeight: 'bold',
+    fontSize: 90,
+    fontWeight: 'bold',
   },
   separator: {
-      marginVertical: 30,
-      height: 1,
-      width: '80%',
+    marginVertical: 20,
+    height: 1,
+    width: '80%',
+  },
+  separatorsmall: {
+    marginVertical: 18,
+    height: 1,
+    width: '80%',
   },
   separatorsmallerr: {
-      marginVertical: 8,
-      height: 1,
-      width: '80%',
+    marginVertical: 8,
+    height: 1,
+    width: '80%',
   },
 });

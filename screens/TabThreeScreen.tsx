@@ -43,12 +43,12 @@ export const Info = () => (
 )
 const styles = StyleSheet.create({
     separatorsmall: {
-        marginVertical: w / 24,
+        marginVertical:  24,
         height: 1,
         width: '80%',
     },
     invisisep: {
-        marginVertical: w / 34,
+        marginVertical: 20,
         height: 1,
         width: '80%',
     },
@@ -79,19 +79,19 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     para: {
-        fontSize: w / 24,
+        fontSize:  24,
 
     },
     parabig: {
-        fontSize: w / 24,
+        fontSize: 24,
 
     },
     parasmall: {
-        fontSize: w / 24.9,
+        fontSize: 24.9,
 
     },
     title: {
-        fontSize: w / 14,
+        fontSize: 14,
         fontWeight: 'bold',
     },
     big: {
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     minititle: {
-        fontSize: w / 21,
+        fontSize: 21,
         fontWeight: 'bold',
     },
     separator: {

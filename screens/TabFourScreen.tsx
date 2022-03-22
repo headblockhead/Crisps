@@ -1,4 +1,3 @@
-import { WebBrowser } from 'expo';
 import * as React from 'react';
 import { ScrollView, StyleSheet, Linking, useColorScheme, Button } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -51,7 +50,7 @@ export const Credits = (reset: () => void) => (
 )
 const styles = StyleSheet.create({
     text: {
-        fontSize: 16,
+        fontSize: 20,
         color: 'black',
     },
     parasmall: {
