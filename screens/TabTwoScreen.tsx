@@ -79,7 +79,7 @@ title3: {
   fontWeight: 'bold',
 },
   medium: {
-    fontSize:  13,
+    fontSize:  15,
     fontWeight: 'bold',
 },
   minititle: {

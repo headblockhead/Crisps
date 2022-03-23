@@ -77,19 +77,19 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   big: {
-    fontSize: 90,
-    fontWeight: 'bold',
-  },
-  big1: {
-    fontSize: 80,
-    fontWeight: 'bold',
-  },
-  big2: {
     fontSize: 70,
     fontWeight: 'bold',
   },
-  big3: {
+  big1: {
     fontSize: 60,
+    fontWeight: 'bold',
+  },
+  big2: {
+    fontSize: 50,
+    fontWeight: 'bold',
+  },
+  big3: {
+    fontSize: 40,
     fontWeight: 'bold',
   },
   subtitle1: {
