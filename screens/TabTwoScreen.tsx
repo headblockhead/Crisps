@@ -37,7 +37,7 @@ export const Shop = (count: number, addOne: () => void, addOneBot: () => void, p
 
       <Text style={styles.title2}>Info:</Text>
       <Text></Text>
-      <Text style={styles.medium}>Crisps: {count}</Text>
+      <Text style={styles.medium}>Criisps: {count}</Text>
       <Text style={styles.medium}>Diamonds: {diamonds} </Text>
       <Text style={styles.medium}>Points/click: {pointsPerClick}</Text>
       <Text style={styles.medium}>Bots: {botCount}</Text>
@@ -112,7 +112,7 @@ title3: {
 
   },
   title: {
-    fontSize: 60,
+    fontSize: 50,
     fontWeight: 'bold',
   },
   big: {
