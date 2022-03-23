@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
         width: '80%',
     },
     invisisep: {
-        marginVertical: 20,
+        marginVertical: 17,
         height: 1,
         width: '80%',
     },
@@ -79,15 +79,15 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     para: {
-        fontSize:  24,
+        fontSize:  15,
 
     },
     parabig: {
-        fontSize: 24,
+        fontSize: 16,
 
     },
     parasmall: {
-        fontSize: 24.9,
+        fontSize: 14,
 
     },
     title: {
