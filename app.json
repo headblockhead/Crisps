@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Crisps!",
-    "slug": "Crisps",
+    "slug": "crisps",
     "version": "1.2.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -24,6 +24,9 @@
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
+    },
+    "android": {
+      "package": "com.headblockhead.Crisps"
     }
   }
 }
